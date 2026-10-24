@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    match /users/{uid}/games/{game} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // 存檔碼：知道碼先讀到（禁止 list）；只有擁有者寫
+    match /codes/{code} {
+      allow get: if request.auth != null;
+      allow list: if false;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid && code.size() >= 6 && code.size() <= 8;
+      allow update: if request.auth != null && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid;
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+      match /games/{game} {
+        allow get, list: if request.auth != null;
+        allow write: if request.auth != null && get(/databases/$(db)/documents/codes/$(code)).data.uid == request.auth.uid;
+      }
+    }
+  }
+}
