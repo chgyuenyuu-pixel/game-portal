@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#e8f5e9">
-<meta name="eg-build" content="hear-back-btn-20261025d">
+<meta name="eg-build" content="demo-tts-20261025e">
 <title>English Garden · 我的英語學習樂園</title>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -246,49 +246,112 @@ var SPEAK_SETS={"beginner":["hello","Hello! Welcome to our shop in Tung Chung.",
 var SITU={"beginner":{"shop":[[{"role":"顧客","en":"Excuse me, where is the T-shirt section?","zh":"唔好意思，T恤區喺邊？"},{"role":"你（店員）","en":"It is next to the fitting rooms.","zh":"喺試身室隔離。"},{"role":"顧客","en":"Do you have size medium?","zh":"有冇中碼？"},{"role":"你（店員）","en":"Yes. The blue one is popular.","zh":"有。藍色好受歡迎。"},{"role":"顧客","en":"How much is it?","zh":"幾錢？"},{"role":"你（店員）","en":"It is ninety-nine dollars.","zh":"九十九蚊。"}],[{"role":"顧客","en":"Hi, I need a bag for these bottles.","zh":"你好，呢啲樽要個袋。"},{"role":"你（店員）","en":"Sure. Would you like a paper bag?","zh":"得。要唔要紙袋？"},{"role":"顧客","en":"Yes, please. Can I pay by card?","zh":"好。可唔可以用卡？"},{"role":"你（店員）","en":"Of course. Please tap here.","zh":"當然。請喺呢度拍卡。"}],[{"role":"顧客","en":"Is this jacket on sale?","zh":"呢件外套減價嗎？"},{"role":"你（店員）","en":"Yes, twenty percent off today.","zh":"係，今日八折。"},{"role":"顧客","en":"Great. Where can I try it on?","zh":"好。邊度試？"},{"role":"你（店員）","en":"The fitting room is on your left.","zh":"試身室喺你左邊。"}]],"airport":[[{"role":"旅客","en":"Is the airport train near here?","zh":"機場鐵路近唔近？"},{"role":"你","en":"Yes. Follow the MTR signs.","zh":"近。跟住港鐵指示牌。"},{"role":"旅客","en":"How long does it take?","zh":"要幾耐？"},{"role":"你","en":"About three minutes on foot.","zh":"行路大概三分鐘。"}],[{"role":"旅客","en":"Where can I buy water?","zh":"邊度可以買水？"},{"role":"你","en":"There is a shop next to the exit.","zh":"出口隔離有間舖。"},{"role":"旅客","en":"Thank you for your help.","zh":"多謝你幫忙。"},{"role":"你","en":"You are welcome. Have a safe flight.","zh":"唔使客氣。一路順風。"}],[{"role":"旅客","en":"Which way to the bus stop?","zh":"巴士站點行？"},{"role":"你","en":"Turn right, then walk straight.","zh":"轉右，然後直行。"},{"role":"旅客","en":"Is it far?","zh":"遠唔遠？"},{"role":"你","en":"No, it is very near.","zh":"唔遠，好近。"}]],"work":[[{"role":"同事","en":"Can you cover the cashier?","zh":"可唔可以幫下手收銀？"},{"role":"你","en":"Sure. I will be there in a minute.","zh":"得。我一分鐘到。"},{"role":"同事","en":"A customer needs a bigger bag.","zh":"有位顧客要大啲嘅袋。"},{"role":"你","en":"No problem. I will get one.","zh":"冇問題。我去攞。"}],[{"role":"同事","en":"Please restock the water bottles.","zh":"唔該補下水樽。"},{"role":"你","en":"OK. How many boxes?","zh":"好。幾箱？"},{"role":"同事","en":"Two boxes near the door.","zh":"門口兩箱。"},{"role":"你","en":"Got it. I will do it now.","zh":"收到。我而家做。"}],[{"role":"經理","en":"Smile and greet every customer.","zh":"對每位顧客微笑打招呼。"},{"role":"你","en":"Yes. Good morning works well.","zh":"好。講 Good morning 好用。"},{"role":"經理","en":"Also keep the queue neat.","zh":"排隊都要保持整齊。"},{"role":"你","en":"I will guide people to the line.","zh":"我會引導客人排隊。"}]]},"intermediate":{"shop":[[{"role":"顧客","en":"I bought this yesterday, but it does not fit. Can I exchange it?","zh":"尋日買，著唔落。可唔可以換？"},{"role":"你（店員）","en":"Of course. Do you have the receipt?","zh":"當然可以。有冇收據？"},{"role":"顧客","en":"Yes, here it is. Do you have a larger size in grey?","zh":"有。有冇大一碼灰色？"},{"role":"你（店員）","en":"Let me check. Yes — aisle two, top shelf.","zh":"我睇吓。有——第二條通道上層。"},{"role":"顧客","en":"Great. Can I also get a refund on this scarf?","zh":"好。條頸巾可唔可以退？"},{"role":"你（店員）","en":"Refunds are available within seven days for unworn items.","zh":"未著過嘅貨七日内可以退。"}],[{"role":"顧客","en":"Do you price-match online offers?","zh":"你哋會唔會跟網上價錢？"},{"role":"你（店員）","en":"We match selected local store prices with proof.","zh":"指定本地店證明可以跟。"},{"role":"顧客","en":"Here is a screenshot from yesterday.","zh":"呢張係尋日截圖。"},{"role":"你（店員）","en":"Thanks. I will verify and adjust at the till.","zh":"多謝。我會核實再喺收銀調整。"}],[{"role":"顧客","en":"Can you gift-wrap this for my flight tonight?","zh":"今晚起飛，可唔可以幫我包裝？"},{"role":"你（店員）","en":"Yes. Gift wrap is free over two hundred dollars.","zh":"得。滿二百免費包裝。"},{"role":"顧客","en":"Perfect. I will pay by Octopus.","zh":"完美。我用八達通。"},{"role":"你（店員）","en":"Please tap when you are ready.","zh":"準備好就拍卡。"}]],"airport":[[{"role":"旅客","en":"I have a long layover. Is there luggage storage nearby?","zh":"過境好耐。附近有冇行李寄存？"},{"role":"你","en":"Yes, at Terminal 1 arrivals. The shuttle stops outside Citygate.","zh":"有，一號客運大樓抵港層。穿梭巴士喺東薈城門外停。"},{"role":"旅客","en":"How often does the shuttle run?","zh":"幾耐一班？"},{"role":"你","en":"Every fifteen minutes during the day.","zh":"日間每十五分鐘一班。"}],[{"role":"旅客","en":"My boarding pass is on my phone. Is that OK for the discount?","zh":"登機證喺電話。折扣得唔得？"},{"role":"你","en":"Yes, a digital boarding pass is fine. Please unlock the screen.","zh":"得，電子登機證得。請解鎖螢幕。"},{"role":"旅客","en":"Thanks. Is Terminal 1 walking distance?","zh":"多謝。一號客運大樓行路到嗎？"},{"role":"你","en":"It is better to take the airport train or shuttle.","zh":"建議搭機場快綫或穿梭巴士。"}],[{"role":"旅客","en":"Where is currency exchange with a fair rate?","zh":"邊度兌幣匯率好啲？"},{"role":"你","en":"There is a board near arrivals comparing rates.","zh":"抵港層附近有牌比較匯率。"},{"role":"旅客","en":"Do they take cards?","zh":"收唔收卡？"},{"role":"你","en":"Most counters take cards; some prefer cash.","zh":"多數收卡；有啲偏愛現金。"}]],"work":[[{"role":"經理","en":"We are short-staffed this afternoon. Please prioritise the fitting rooms.","zh":"下晝人手短。試身室優先處理。"},{"role":"你","en":"Understood. Should I delay restocking?","zh":"明白。補貨可唔可以遲啲？"},{"role":"經理","en":"Yes. Focus on customers until 4 p.m., then restock sportswear.","zh":"得。四點前專注接待，之後補運動服。"},{"role":"你","en":"Got it. I will update the team in the group chat.","zh":"收到。我會喺群組通知大家。"}],[{"role":"同事","en":"A customer is upset about a price tag error.","zh":"有位客對價錢牌出錯好唔滿。"},{"role":"你","en":"I will apologise and check the till price now.","zh":"我會道歉再即刻對收銀價。"},{"role":"同事","en":"Should we call the supervisor?","zh":"要唔要叫主管？"},{"role":"你","en":"If they still want a manager after we fix it, yes.","zh":"如果改好仲要見經理，就叫。"}],[{"role":"經理","en":"Please verify staff IDs before applying the discount.","zh":"員工折扣前請核對員工證。"},{"role":"你","en":"Will do. What if the ID is expired?","zh":"會。證過期點？"},{"role":"經理","en":"Then decline politely and explain the rule.","zh":"就禮貌婉拒並解釋規則。"},{"role":"你","en":"Understood. I will note it in the log.","zh":"明白。我會寫低喺記錄。"}]]},"advanced":{"shop":[[{"role":"顧客","en":"There seems to be a discrepancy between the shelf tag and the till price.","zh":"貨架標價同收銀價錢好似唔同。"},{"role":"你（店員）","en":"I apologise for the inconvenience. I will verify this in our inventory system.","zh":"對唔住造成不便。我會喺庫存系統核對。"},{"role":"顧客","en":"If the lower price is correct, can you honour it?","zh":"如果低價係啱，可唔可以跟低價？"},{"role":"你（店員）","en":"Yes. Company policy is to honour the lower displayed price.","zh":"可以。公司政策係跟較低顯示價。"},{"role":"顧客","en":"Also, is complimentary gift wrapping still available?","zh":"另外，而家仲有冇免費包裝？"},{"role":"你（店員）","en":"It is complimentary this weekend for purchases over $300.","zh":"今個週末消費滿三百免包裝費。"}],[{"role":"顧客","en":"I need this delivered to a Tung Chung address today.","zh":"我今日要送到東湧地址。"},{"role":"你（店員）","en":"Complimentary same-day delivery is available for orders before 2 p.m.","zh":"下午兩點前落單可以免運即日送。"},{"role":"顧客","en":"Can you accommodate a call before arrival?","zh":"送到前可唔可以打電話？"},{"role":"你（店員）","en":"Yes. Please leave a contact number at checkout.","zh":"得。結帳時留電話。"}],[{"role":"顧客","en":"This batch looks different from the display model.","zh":"呢批次同陳列樣辦好似唔同。"},{"role":"你（店員）","en":"Let me compare the SKU codes and check for a defect.","zh":"等我對貨號同檢查有冇缺陷。"},{"role":"顧客","en":"If it is defective, what redress can you offer?","zh":"如果有缺陷，有咩補救？"},{"role":"你（店員）","en":"We can replace it or escalate for a goodwill voucher.","zh":"可以換貨，或者上報申請商譽禮券。"}]],"airport":[[{"role":"旅客","en":"My connection is tight. What is the fastest route to Terminal 1 departures?","zh":"轉機好趕。去一號客運大樓離境最快點行？"},{"role":"你","en":"Take the automated people mover; it runs every few minutes.","zh":"搭自動穿梭列車，幾分鐘一班。"},{"role":"旅客","en":"Will I need to clear security again?","zh":"要唔要再過安檢？"},{"role":"你","en":"If you remain airside in transit, usually not. Follow the purple transit signs.","zh":"如果留喺禁區過境，一般唔使。跟紫色過境指示。"}],[{"role":"旅客","en":"Is there a quieter place to wait with luggage?","zh":"有冇靜啲地方拖住行李等？"},{"role":"你","en":"The upper seating near the bookstore is usually calmer off-peak.","zh":"書店附近上層座位非繁忙時較靜。"},{"role":"旅客","en":"Thanks. Can you show me freer charging stations?","zh":"多謝。可唔可以帶我去空啲嘅充電位？"},{"role":"你","en":"Sure — follow me past the food court.","zh":"得——跟我行過美食廣場。"}],[{"role":"旅客","en":"Wayfinding to the SkyPier is confusing.","zh":"去海天客運碼頭好似好亂。"},{"role":"你","en":"I will walk you to the bilingual signs by the escalator.","zh":"我帶你去扶手電梯旁嘅雙語指示。"},{"role":"旅客","en":"Is the ferry schedule still reliable this evening?","zh":"今晚船期穩唔穩？"},{"role":"你","en":"Check the board; weather can cause short delays.","zh":"睇顯示板；天氣可能引致短暫延誤。"}]],"work":[[{"role":"經理","en":"Weekend footfall is spiking with holiday flights. We need to upsell travel accessories.","zh":"假期航班令人流急升。要加推旅行配件。"},{"role":"你","en":"Shall we place neck pillows near the checkout to facilitate impulse buys?","zh":"可唔可以擺頸枕喺收銀附近方便即興購買？"},{"role":"經理","en":"Good idea. Also prepare bilingual brochures for attractions near Tung Chung.","zh":"好主意。再準備東湧附近景點雙語小冊子。"},{"role":"你","en":"I will print a batch before the afternoon peak.","zh":"我會喺下晝高峰前印一批。"}],[{"role":"經理","en":"Shrinkage on high-value chargers is up. Tighten loss-prevention checks.","zh":"高價叉電器損耗上升。收緊防損。"},{"role":"你","en":"Should we relocate them closer to the till and increase tagging?","zh":"可唔可以移近收銀同加強防盜扣？"},{"role":"經理","en":"Yes. Liaise with security about CCTV angles tonight.","zh":"好。今晚同保安協調 CCTV 角度。"},{"role":"你","en":"I will coordinate after the evening briefing.","zh":"夜晚簡報後我會協調。"}],[{"role":"同事","en":"The network outage is slowing contactless payments.","zh":"網絡故障拖慢感應支付。"},{"role":"你","en":"Let us switch to the cash fallback and reassure the queue.","zh":"我哋轉現金後備，同安撫排隊客人。"},{"role":"同事","en":"Do we escalate to IT now?","zh":"而家上報 IT？"},{"role":"你","en":"Yes, and log every voided transaction for the audit.","zh":"要，同埋記錄每筆作廢交易方便稽查。"}]]},"ielts":[{"role":"分析","en":"Airport-adjacent retail benefits from a demographic that is predominantly transit-oriented.","zh":"鄰近機場嘅零售受惠於以過境為主嘅人口結構。"},{"role":"問題","en":"Which paraphrase is closest?","zh":"邊句改寫最接近？","mc":true,"opts":["Shops near airports mainly serve travellers passing through.","Airport shops only sell food.","Retail near airports has no customers.","Demographics never change near airports."],"a":0},{"role":"分析","en":"Although promotions can stimulate short-term turnover, they may exacerbate dependency on discounts.","zh":"雖然優惠可以刺激短期營業額，但可能加劇對折扣嘅依賴。"},{"role":"問題","en":"The writer suggests promotions…","zh":"作者認為優惠會…","mc":true,"opts":["only have positive effects","can raise sales yet increase discount reliance","should replace all regular prices","are illegal in retail"],"a":1},{"role":"分析","en":"Investing in staff training is often regarded as indispensable to mitigating service failures.","zh":"投放員工培訓通常被視為減輕服務失誤嘅不可或缺做法。"},{"role":"問題","en":"Best synonym for indispensable?","zh":"indispensable 最接近？","mc":true,"opts":["optional","essential","expensive","temporary"],"a":1},{"role":"分析","en":"Methodologists caution that simultaneous spikes in arrivals and sales show correlation, not necessarily causation.","zh":"方法論者提醒抵港同銷售同時急升只係相關，唔一定係因果。"},{"role":"問題","en":"The caution is mainly about…","zh":"提醒主要關於…","mc":true,"opts":["confusing correlation with causation","ignoring all data","banning analytics","proving weather is irrelevant"],"a":0},{"role":"分析","en":"Flexible rosters and cross-training bolster resilience when passenger volumes are volatile.","zh":"彈性更表同交叉培訓喺旅客量波動時加強韌性。"},{"role":"問題","en":"Resilience here is strengthened by…","zh":"呢度韌性靠…加強","mc":true,"opts":["flexible staffing practices","fixed tiny teams only","ignoring peaks","removing training"],"a":0},{"role":"分析","en":"Clear governance of discretionary discounts prevents chronic margin leakage.","zh":"酌情折扣嘅清晰管治防止長期利潤流失。"},{"role":"問題","en":"Without governance, discretionary discounts may…","zh":"無管治時酌情折扣可能…","mc":true,"opts":["cause chronic margin leakage","guarantee higher margins","eliminate all sales","remove accountability needs"],"a":0}]};
 
 /* ===== TTS / AUDIO ===== */
-function ttsUrl(text){
-  var s=String(text||'').replace(/\s+/g,' ').trim().slice(0,200);
-  if(!s)return '';
-  return 'https://dict.youdao.com/dictvoice?audio='+encodeURIComponent(s)+'&type=2';
+function ttsUrls(text){
+  var s=String(text||'').replace(/\s+/g,' ').trim().slice(0,180);
+  if(!s)return [];
+  var q=encodeURIComponent(s);
+  var word=s.split(/\s+/)[0].replace(/[^a-zA-Z'-]/g,'');
+  var urls=[
+    'https://fanyi.baidu.com/gettts?lan=en&text='+q+'&spd=3&source=web',
+    'https://dict.youdao.com/dictvoice?audio='+q+'&type=2'
+  ];
+  if(word && word.length<24 && s.indexOf(' ')<0){
+    urls.push('https://api.dictionaryapi.dev/media/pronunciations/en/'+word.toLowerCase()+'-us.mp3');
+    urls.push('https://api.dictionaryapi.dev/media/pronunciations/en/'+word.toLowerCase()+'-uk.mp3');
+  }
+  return urls;
+}
+function ttsUrl(text){var u=ttsUrls(text);return u[0]||'';}
+function fillTtsPlayer(text){
+  var slot=document.getElementById('tts-player');
+  if(!slot)return;
+  var urls=ttsUrls(text);
+  slot.innerHTML='<div style="font-size:.78rem;color:#607d8b;margin:0 0 6px">示範音檔（0:00 即換下一個來源）</div>'+
+    '<audio id="tts-audio" controls playsinline preload="auto" style="width:100%;height:40px"></audio>'+
+    '<button class="speak-btn" type="button" id="tts-sys" style="margin-top:6px">📢 用手機系統朗讀（唔使網絡）</button>';
+  var au=document.getElementById('tts-audio');
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length){
+      slot.querySelector('div').textContent='網上音檔播唔到 · 請撳「系統朗讀」';
+      speakSynth(text,0.92);
+      return;
+    }
+    var url=urls[i++];
+    au.onerror=function(){tryNext();};
+    au.onloadedmetadata=function(){
+      if(!au.duration || !isFinite(au.duration) || au.duration===0)tryNext();
+    };
+    au.src=url;
+    try{au.load();}catch(e){tryNext();}
+  }
+  tryNext();
+  var sys=document.getElementById('tts-sys');
+  if(sys)bindTap(sys,function(){speakSynth(text,0.92);toast('系統朗讀');});
 }
 function speak(text,rate){
   try{
     if(!text)return;
     var s=String(text).replace(/\s+/g,' ').trim();
     if(!s)return;
-    var url=ttsUrl(s);
     try{if(window._egAudio){window._egAudio.pause();}}catch(e){}
-    try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
-
-    // Update any on-page players
+    // 1) Always try local system voice first (works offline / with VPN)
+    speakSynth(s,rate);
+    // 2) Also load network audio into player for ▶ fallback
     var slot=document.getElementById('tts-player');
     if(slot){
-      slot.innerHTML='<div style="font-size:.78rem;color:#607d8b;margin:0 0 6px">播唔出就撳下面 ▶</div>'+
-        '<audio id="tts-audio" controls playsinline preload="auto" style="width:100%;height:40px;margin:0" src="'+url.replace(/"/g,'&quot;')+'"></audio>';
+      fillTtsPlayer(s);
       var au=document.getElementById('tts-audio');
-      window._egAudio=au;
-      var p=au.play();
-      if(p&&p.catch)p.catch(function(){toast('撳下面 ▶ 播放');});
-      toast('🔊 朗讀');
-      return;
+      if(au){
+        window._egAudio=au;
+        // try play network copy too (may fail under VPN)
+        setTimeout(function(){
+          var p=au.play();
+          if(p&&p.catch)p.catch(function(){});
+        },80);
+      }
+    }else{
+      // no player: try baidu audio as well
+      var urls=ttsUrls(s);
+      var a=new Audio();
+      window._egAudio=a;
+      var i=0;
+      function go(){
+        if(i>=urls.length)return;
+        a.onerror=function(){i++;go();};
+        a.src=urls[i++];
+        var p=a.play();
+        if(p&&p.catch)p.catch(function(){i++;go();});
+      }
+      go();
     }
-    var a=new Audio(url);
-    a.setAttribute('playsinline','');
-    window._egAudio=a;
-    var p2=a.play();
-    if(p2&&p2.catch)p2.catch(function(){speakSynth(s,rate);toast('改用系統朗讀／請開聲');});
-    else toast('🔊 朗讀');
+    toast('🔊 朗讀中');
   }catch(e){speakSynth(String(text),rate);}
 }
 function speakSynth(text,rate){
   try{
-    if(!window.speechSynthesis){toast('朗讀唔到');return;}
+    if(!window.speechSynthesis){toast('呢部機無系統朗讀');return;}
+    try{if(speechSynthesis.paused)speechSynthesis.resume();}catch(e){}
     try{speechSynthesis.cancel();}catch(e){}
-    var u=new SpeechSynthesisUtterance(String(text));
-    u.lang='en-US';u.rate=rate||0.92;
-    speechSynthesis.speak(u);
-    setTimeout(function(){try{speechSynthesis.resume();}catch(e){}},30);
-  }catch(e){}
+    // Unlock + speak in chunks (Xiaomi often chokes on long cancel+speak)
+    var s=String(text);
+    var parts=s.match(/[^.!?。！？]+[.!?。！？]?/g)||[s];
+    var idx=0;
+    function next(){
+      if(idx>=parts.length)return;
+      var u=new SpeechSynthesisUtterance(parts[idx++].trim());
+      if(!u.text){next();return;}
+      u.lang='en-US';u.rate=rate||0.9;u.volume=1;
+      var vs=[];try{vs=speechSynthesis.getVoices()||[];}catch(e){}
+      for(var i=0;i<vs.length;i++){if(/^en/i.test(vs[i].lang)){u.voice=vs[i];break;}}
+      u.onend=function(){next();};
+      u.onerror=function(){next();};
+      speechSynthesis.speak(u);
+    }
+    next();
+    setTimeout(function(){try{speechSynthesis.resume();}catch(e){}},40);
+    setTimeout(function(){try{speechSynthesis.resume();}catch(e){}},300);
+  }catch(e){toast('系統朗讀失敗');}
 }
 function bindTap(el,fn){
   if(!el)return;
@@ -795,14 +858,7 @@ function renderSpeakStep(step){
     '<button class="btn-ghost" type="button" id="skip" style="margin-top:8px">咪唔得 · 跳過呢題</button>'+
     '</div>';
 
-  (function(){
-    var slot=document.getElementById('tts-player');
-    var url=ttsUrl(step.target);
-    if(slot&&url){
-      slot.innerHTML='<div style="font-size:.78rem;color:#607d8b;margin:0 0 6px">示範（無聲就撳 ▶）</div>'+
-        '<audio id="tts-audio" controls playsinline preload="auto" style="width:100%;height:40px" src="'+url.replace(/"/g,'&quot;')+'"></audio>';
-    }
-  })();
+  fillTtsPlayer(step.target);
 
   var playMineBtn=document.getElementById('playMine');
   playMineBtn.disabled=true;
