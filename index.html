@@ -1,0 +1,175 @@
+<!doctype html><html lang="zh-HK"><head><script src="cloud-save.js"></script>
+<!--kitchen-cache-bust-->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1b1340"><title>我嘅遊戲樂園</title><link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","PingFang HK",sans-serif;background:#140e33;color:#fff;-webkit-tap-highlight-color:transparent}
+.hero{position:relative;overflow:hidden;padding:36px 20px 30px;text-align:center;background:radial-gradient(circle at 20% 10%,#ff6ec7 0,transparent 45%),radial-gradient(circle at 85% 30%,#4fd1ff 0,transparent 45%),linear-gradient(160deg,#5b2bd6,#1b1340);border-radius:0 0 28px 28px}
+.hero .em{font-size:54px;line-height:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
+.hero h1{margin:10px 0 6px;font-size:32px;letter-spacing:1px}.hero p{margin:0;opacity:.9;font-size:15px}
+.badge{display:inline-block;margin-top:14px;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:99px;font-size:13px}
+main{max-width:560px;margin:0 auto;padding:20px 14px 40px}
+h2{font-size:20px;margin:6px 4px 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{display:flex;flex-direction:column;background:#241a5c;border-radius:18px;overflow:hidden;text-decoration:none;color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.3);transition:transform .15s}
+.card:active{transform:scale(.97)}
+.art{height:96px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.tx{padding:10px 12px 12px;flex:1;display:flex;flex-direction:column}.tx b{font-size:17px}.tx p{margin:4px 0 10px;font-size:13px;opacity:.82;line-height:1.4;flex:1}
+.go{align-self:flex-start;background:#ffcc33;color:#1b1340;font-weight:800;padding:6px 12px;border-radius:10px;font-size:13px}
+.g1{background:linear-gradient(135deg,#ff512f,#f09819)}.g2{background:linear-gradient(135deg,#11998e,#38ef7d)}.g3{background:linear-gradient(135deg,#232526,#8e9eab)}
+.g4{background:linear-gradient(135deg,#f857a6,#ff5858)}.g5{background:linear-gradient(135deg,#a8e063,#56ab2f)}.g6{background:linear-gradient(135deg,#2193b0,#6dd5ed)}.g7{background:linear-gradient(135deg,#667eea,#764ba2)}
+.box{background:#241a5c;border-radius:18px;padding:18px;margin-top:22px}
+.note{background:linear-gradient(160deg,#3a2a8a,#241a5c);border:1px solid rgba(255,255,255,.12)}
+.note p{line-height:1.7;margin:0 0 10px;font-size:15px}.sign{text-align:right;opacity:.85;font-size:14px;margin:0}
+.share{text-align:center}.share p{margin:0 0 10px}
+.btn{background:#ffcc33;color:#1b1340;font-weight:800;padding:10px 16px;border-radius:12px;border:0;font-size:15px}
+footer{text-align:center;opacity:.5;font-size:12px;margin-top:24px}
+.card{position:relative}
+.flag{position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:4px;padding:4px 9px 4px 6px;border-radius:99px;font-size:12px;font-weight:900;color:#5a3a00;background:linear-gradient(135deg,#fff3b0,#ffd700 40%,#e6a800 60%,#fff1a1);border:1px solid #fff6c8;box-shadow:0 2px 8px rgba(255,200,0,.6),inset 0 1px 0 #fff;overflow:hidden}
+.flag:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-20deg);animation:sh 2.6s infinite}
+@keyframes sh{0%{left:-60%}60%,100%{left:130%}}
+.flag i{font-style:normal;font-size:15px}
+.newb{position:absolute;top:4px;right:4px;width:58px;height:58px;display:flex;align-items:center;justify-content:center;animation:pu 1.2s ease-in-out infinite}
+.newb svg{position:absolute;inset:0}.newb span{position:relative;color:#fff;font-weight:900;font-size:14px;transform:rotate(-12deg);text-shadow:0 1px 2px rgba(0,0,0,.4)}
+@keyframes pu{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:4px;vertical-align:middle}
+.tg{background:#ffd700;color:#5a3a00}.tn{background:#ff4b2b;color:#fff}
+.feat{background:linear-gradient(160deg,#3b2390,#22175a);border:1px solid rgba(255,215,0,.45);box-shadow:0 10px 30px rgba(255,180,0,.25),0 4px 12px rgba(0,0,0,.4)}
+.feat .art{height:120px;font-size:64px}.feat .tx b{font-size:18px}.feat .tx p{font-size:15px}.feat .go{font-size:15px;padding:9px 18px}
+body{background:radial-gradient(1200px 600px at 10% -10%,#4b1fa8 0,transparent 60%),radial-gradient(900px 700px at 110% 40%,#0e5a8a 0,transparent 55%),radial-gradient(800px 600px at -10% 100%,#7a1f6b 0,transparent 55%),#120b2e;background-attachment:fixed;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;letter-spacing:.2px}
+.hero{box-shadow:0 12px 40px rgba(91,43,214,.5)}.hero h1{font-size:34px;text-shadow:0 0 18px rgba(255,255,255,.45),0 3px 0 rgba(0,0,0,.25)}
+.hero:before,.hero:after{content:"✦";position:absolute;color:#fff;opacity:.8;animation:tw 2.4s ease-in-out infinite}
+.hero:before{top:22px;left:14%;font-size:18px}.hero:after{top:60px;right:12%;font-size:24px;animation-delay:1.1s}
+.sp{position:absolute;color:#ffe9a8;animation:tw 3s ease-in-out infinite;pointer-events:none}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+main{padding:24px 16px 48px}h2{font-size:21px;letter-spacing:.5px}.grid{gap:14px}
+.card{border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 22px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+.art{text-shadow:0 6px 14px rgba(0,0,0,.35)}.go{box-shadow:0 3px 10px rgba(255,204,51,.45)}
+.note{box-shadow:0 0 0 1px rgba(255,182,255,.2),0 10px 30px rgba(255,110,199,.18)}
+
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
+.stat{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);padding:5px 11px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.2px;line-height:1.3;white-space:nowrap}
+.stat b{font-variant-numeric:tabular-nums;font-weight:900;margin-left:4px;color:#ffe9a8}
+.art.cover{padding:0;overflow:hidden;background:#1a1040}
+.art.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.feat .art.cover{height:140px}
+.hero-media{margin:16px auto 0;max-width:320px;width:100%;aspect-ratio:9/16;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.22);box-shadow:0 12px 28px rgba(0,0,0,.45);background:#1a1040}
+.hero-media video{width:100%;height:100%;object-fit:cover;display:block}
+</style></head><body>
+<header class="hero"><div class="em">🎮</div><h1>我嘅遊戲樂園</h1><p>揀一隻遊戲，即刻開始玩！</p><span class="sp" style="top:100px;left:8%">✧</span><span class="sp" style="top:20px;right:30%;animation-delay:.7s">✦</span><span class="sp" style="bottom:20px;right:8%;animation-delay:1.6s">✧</span><span class="badge">✨ 8 款遊戲 · 手機直接玩</span><div class="hero-media"><video src="covers/portal-hero.mp4" poster="covers/portal-hero.jpg" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="我嘅遊戲樂園宣傳片"></video></div><div class="stats" id="portal-stats" aria-live="polite">
+<span class="stat">👁 總瀏覽 <b id="ps-views">—</b></span>
+<span class="stat">👤 訪客 <b id="ps-visitors">—</b></span>
+<span class="stat">🟢 在線 <b id="ps-online">—</b></span>
+</div></header>
+<main><h2>🕹️ 全部遊戲</h2><div class="grid">
+<a class="card feat" href="games/harbour-kart-v12.html?r=1018-1502"><div class="art cover"><img src="covers/harbour-kart.jpg" alt="港島飛車" loading="lazy" decoding="async"></div><div class="flag"><i>👑</i>🏆 旗艦遊戲</div><div class="tx"><b>港島飛車<span class="tag tg">旗艦</span></b><p>喺香港海旁飛馳，衝線做冠軍！</p><span class="go">開始玩 ▶</span></div></a>
+<a class="card feat" href="games/world-kart.html"><div class="art cover"><img src="covers/world-kart.jpg" alt="環球飛車" loading="lazy" decoding="async"></div><div class="flag"><i>👑</i>🏆 旗艦遊戲</div><div class="tx"><b>環球飛車<span class="tag tg">旗艦</span></b><p>飛馳東京、新加坡、紐約，睇歐洲風景！</p><span class="go">開始玩 ▶</span></div></a>
+<a class="card" href="games/english-garden.html"><div class="art g5">🌱</div><div class="newb"><svg viewBox="0 0 100 100"><polygon fill="#ff3d2e" stroke="#ffd23f" stroke-width="4" points="98.0,50.0 82.8,58.8 91.6,74.0 74.0,74.0 74.0,91.6 58.8,82.8 50.0,98.0 41.2,82.8 26.0,91.6 26.0,74.0 8.4,74.0 17.2,58.8 2.0,50.0 17.2,41.2 8.4,26.0 26.0,26.0 26.0,8.4 41.2,17.2 50.0,2.0 58.8,17.2 74.0,8.4 74.0,26.0 91.6,26.0 82.8,41.2"/></svg><span>NEW</span></div><div class="tx"><b>English Garden<span class="tag tn">新遊戲</span></b><p>學詞彙、聽力同口語，手機直接練英語！</p><span class="go">開始玩 ▶</span></div></a>
+
+
+<a class="card" href="games/rail-rush-v10.html"><div class="art g2">🏃</div><div class="tx"><b>街頭疾走</b><p>喺路軌之間左閃右避，越跑越遠！</p><span class="go">開始玩 ▶</span></div></a>
+<a class="card" href="games/piano-tiles.html"><div class="art g3">🎹</div><div class="tx"><b>鋼琴塊</b><p>跟住節奏撳黑色琴鍵，唔好撳錯！</p><span class="go">開始玩 ▶</span></div></a>
+<a class="card" href="games/kitchen.html?v=1792169818"><div class="art g4">🍳</div><div class="tx"><b>滋味小廚房</b><p>煮出各地美食，滿足每位客人！</p><span class="go">開始玩 ▶</span></div></a>
+<a class="card" href="games/farm-day.html"><div class="art cover"><img src="covers/farm-day.jpg" alt="開心農場" loading="lazy" decoding="async"></div><div class="tx"><b>開心農場</b><p>種菜養動物，打理你嘅小農場！</p><span class="go">開始玩 ▶</span></div></a>
+<a class="card" href="games/fishing-island.html"><div class="art cover"><img src="covers/fishing-island.jpg" alt="海島釣魚物語" loading="lazy" decoding="async"></div><div class="tx"><b>海島釣魚物語</b><p>出海釣魚、撒網、開工廠接訂單！</p><span class="go">開始玩 ▶</span></div></a>
+</div>
+<section class="box note"><h2>💌 遊戲創作者的話</h2>
+<p>多謝你嚟到我嘅遊戲樂園！呢度每一隻遊戲，都係我同幾個 AI 小幫手一齊慢慢砌出嚟嘅，由一個小諗法開始，一版一版咁改到而家。</p>
+<p>遊戲仲喺度不斷更新緊，可能會有啲小問題。如果你玩完覺得邊度好玩、邊度唔順，歡迎話我知，你嘅意見會幫我哋整得更好！</p>
+<p>希望你玩得開心 😊</p><p class="sign">—— Crystal Yiu</p></section>
+<section class="box share"><p>好玩就分享畀朋友，一齊玩！</p><button class="btn" id="cp">📋 複製連結</button></section>
+<footer>Made with ❤️ & AI bots</footer></main>
+<script>
+document.getElementById('cp').onclick=function(){var u=location.href.split('#')[0],b=this;function ok(){b.textContent='✅ 已複製'}
+function f(){var t=document.createElement('textarea');t.value=u;document.body.appendChild(t);t.select();try{document.execCommand('copy');ok()}catch(e){prompt('複製呢條連結：',u)}t.remove()}
+if(navigator.clipboard&&isSecureContext)navigator.clipboard.writeText(u).then(ok,f);else f();};
+</script>
+<script>
+/* portal-stats — real-time views/visitors/online via Firestore (soft-fail) */
+(function(){
+'use strict';
+var CFG={apiKey:"AIzaSyC_Rg1G4B9ub-LGNe7Ehav2M8_R1SeEkAs",authDomain:"game-fcb7b.firebaseapp.com",projectId:"game-fcb7b",storageBucket:"game-fcb7b.firebasestorage.app",messagingSenderId:"1025463195895",appId:"1:1025463195895:web:9ec9f047b8a884df2a9bf2"};
+var SDK='https://www.gstatic.com/firebasejs/10.12.5/';
+var STALE_MS=90000, HB_MS=25000;
+function $(id){return document.getElementById(id)}
+function set(id,v){var e=$(id);if(e)e.textContent=v}
+function uuid(){try{if(crypto&&crypto.randomUUID)return crypto.randomUUID().replace(/-/g,'').slice(0,16)}catch(e){}
+  var s='',a=new Uint8Array(8);try{crypto.getRandomValues(a)}catch(e){for(var i=0;i<8;i++)a[i]=Math.floor(Math.random()*256)}
+  for(var i=0;i<a.length;i++)s+=('0'+a[i].toString(16)).slice(-2);return s}
+function load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.async=true;s.onload=ok;s.onerror=no;(document.head||document.documentElement).appendChild(s)})}
+function ensureSdk(){
+  if(window.firebase&&firebase.firestore)return Promise.resolve();
+  return load(SDK+'firebase-app-compat.js').then(function(){
+    return Promise.all([load(SDK+'firebase-auth-compat.js'),load(SDK+'firebase-firestore-compat.js')]);
+  });
+}
+function boot(){
+  return ensureSdk().then(function(){
+    var fb=window.firebase;
+    if(!fb.apps||!fb.apps.length)fb.initializeApp(CFG);
+    return fb.firestore();
+  });
+}
+function run(db){
+  var fb=window.firebase, FV=fb.firestore.FieldValue;
+  var OWNER={'chgyuenyuu@gmail.com':1};
+  function isOwnerUser(u){return !!(u&&u.email&&OWNER[String(u.email).toLowerCase()])}
+  var sid;try{sid=sessionStorage.getItem('portal_sid')}catch(e){}
+  if(!sid||sid.length<8){sid=uuid();try{sessionStorage.setItem('portal_sid',sid)}catch(e){}}
+  var vid,isNew=false;try{vid=localStorage.getItem('portal_vid')}catch(e){}
+  if(!vid){vid=uuid();isNew=true;try{localStorage.setItem('portal_vid',vid)}catch(e){}}
+
+  var sref=db.collection('portal_stats').doc('main');
+  sref.onSnapshot(function(snap){
+    if(!snap.exists){set('ps-views','0');set('ps-visitors','0');return}
+    var d=snap.data()||{};
+    set('ps-views',String(d.views||0));
+    set('ps-visitors',String(d.visitors||0));
+  },function(){/* soft */});
+
+  function countPage(skip){
+    if(skip)return;
+    sref.set({
+      views:FV.increment(1),
+      visitors:FV.increment(isNew?1:0),
+      updatedAt:FV.serverTimestamp()
+    },{merge:true}).catch(function(){});
+  }
+
+  // presence (owner still heartbeat so you can see yourself online; not counted in views)
+  var oref=db.collection('portal_online').doc(sid);
+  function beat(){
+    var data={lastSeen:FV.serverTimestamp()};
+    try{if(navigator.userAgent)data.ua=String(navigator.userAgent).slice(0,180)}catch(e){}
+    oref.set(data,{merge:true}).catch(function(){});
+  }
+  beat();
+  var hb=setInterval(beat,HB_MS);
+  function gone(){try{clearInterval(hb)}catch(e){}try{oref.delete()}catch(e){}}
+  window.addEventListener('pagehide',gone);
+  window.addEventListener('beforeunload',gone);
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')beat()});
+
+  db.collection('portal_online').onSnapshot(function(qs){
+    var now=Date.now(),n=0;
+    qs.forEach(function(doc){
+      var d=doc.data()||{},t=d.lastSeen;
+      var ms=t&&t.toMillis?t.toMillis():(t&&t.seconds?t.seconds*1000:0);
+      if(ms && (now-ms)<STALE_MS)n++;
+    });
+    set('ps-online',String(n));
+  },function(){set('ps-online','—')});
+
+  // wait briefly for auth so owner pageviews are skipped
+  var counted=false;
+  function decide(u){if(counted)return;counted=true;countPage(isOwnerUser(u))}
+  try{
+    var a=fb.auth();
+    var unsub=a.onAuthStateChanged(function(u){try{unsub()}catch(e){}decide(u)});
+    setTimeout(function(){decide(a.currentUser)},2500);
+  }catch(e){countPage(false)}
+}
+boot().then(run).catch(function(){/* soft-fail: leave — */});
+})();
+</script>
+</body></html>
