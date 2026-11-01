@@ -1,158 +1,47 @@
-/* Mandarin Garden service worker — precache shell, runtime-cache audio + whisper */
-var MG_SW_VERSION = 'home-v1-20261102w-voice-fix2-pinyin-sent';
-var SHELL_CACHE = 'mg-shell-' + MG_SW_VERSION;
-var AUDIO_CACHE = 'mg-audio-v1';
-var AI_CACHE = 'mg-ai-v5';
-
-var SHELL_URLS = [
-  './mandarin-garden.html',
-  './manifest-mandarin-garden.webmanifest'
-];
-
-self.addEventListener('install', function (event) {
-  event.waitUntil(
-    caches.open(SHELL_CACHE).then(function (cache) {
-      return cache.addAll(SHELL_URLS.map(function (u) {
-        return new Request(u, { cache: 'reload' });
-      })).catch(function () {
-        return Promise.all(SHELL_URLS.map(function (u) {
-          return cache.add(u).catch(function () {});
-        }));
-      });
-    }).then(function () { return self.skipWaiting(); })
-  );
+/* Mandarin Garden: network-first page updates, persistent speech/model caches. */
+var EG_SW_VERSION='home-v1-20261102w-voice-fix3';
+var SHELL_CACHE='mg-shell-'+EG_SW_VERSION,AUDIO_CACHE='mg-audio-v1',AI_CACHE='mg-ai-v5';
+var SHELL_URLS=['./english-garden.html','./manifest-english-garden.webmanifest','./eg-icon-192.png','./eg-icon-512.png','./mandarin-garden.html','./manifest-mandarin-garden.webmanifest','../cloud-save.js'];
+function absolute(path){return new URL(path,self.location.href).href;}
+self.addEventListener('install',function(event){
+  event.waitUntil(caches.open(SHELL_CACHE).then(function(cache){
+    return Promise.all(SHELL_URLS.map(function(path){return cache.add(new Request(absolute(path),{cache:'reload'})).catch(function(){});}));
+  }).then(function(){return self.skipWaiting();}));
 });
-
-self.addEventListener('activate', function (event) {
-  event.waitUntil(
-    caches.keys().then(function (keys) {
-      return Promise.all(keys.map(function (k) {
-        if (k.indexOf('mg-shell-') === 0 && k !== SHELL_CACHE) return caches.delete(k);
-        /* Drop stale AI caches so bad/partial whisper responses cannot stick */
-        if (k.indexOf('mg-ai-') === 0 && k !== AI_CACHE) return caches.delete(k);
-        return null;
-      }));
-    }).then(function () { return self.clients.claim(); })
-  );
+self.addEventListener('activate',function(event){
+  event.waitUntil(caches.keys().then(function(keys){return Promise.all(keys.map(function(key){if(key.indexOf('mg-shell-')===0&&key!==SHELL_CACHE)return caches.delete(key);}));}).then(function(){return self.clients.claim();}));
 });
-
-function isAudioRequest(url) {
-  return /\/games\/audio\/.+\.mp3(\?|$)/.test(url.pathname) ||
-    /\/audio\/.+\.mp3(\?|$)/.test(url.pathname);
+function isWhisperAsset(url){return /\/whisper-(?:tiny|base)(?:-en)?\//.test(url.pathname)||/\/transformers\//.test(url.pathname)||/\.onnx$/.test(url.pathname);}
+function isAiCdnRequest(url){
+  var host=url.hostname;
+  if(host==='cdn.jsdelivr.net'||host==='unpkg.com')return /@xenova\/transformers|onnxruntime/.test(url.pathname);
+  return host==='huggingface.co'||host.endsWith('.huggingface.co')||host.endsWith('.hf.co')||host==='hf.co'||host==='hf-mirror.com'||host.endsWith('.hf-mirror.com');
 }
-
-function isWhisperAsset(url) {
-  return /\/whisper-tiny\//.test(url.pathname) ||
-    /\/transformers\//.test(url.pathname) ||
-    /\.onnx(\?|$)/.test(url.pathname) ||
-    /\.wasm(\?|$)/.test(url.pathname);
+function cachedAsset(event,cacheName,validateAi){
+  var request=event.request;
+  return caches.open(cacheName).then(function(cache){return cache.match(request).then(function(hit){
+    if(hit&&(!validateAi||!/text\/html/i.test(hit.headers.get('content-type')||'')))return hit;
+    if(hit)event.waitUntil(cache.delete(request).catch(function(){}));
+    return fetch(request).then(function(response){
+      if(response&&(response.ok||response.type==='opaque')&&(!validateAi||!/text\/html/i.test(response.headers.get('content-type')||'')))event.waitUntil(cache.put(request,response.clone()).catch(function(){}));
+      return response;
+    });
+  });});
 }
-
-function isAiCdnRequest(url) {
-  var h = url.hostname || '';
-  if (h === 'cdn.jsdelivr.net' || h === 'unpkg.com') {
-    return /@xenova\/transformers/.test(url.pathname) ||
-      /whisper/i.test(url.pathname) ||
-      /onnxruntime/i.test(url.pathname);
-  }
-  if (h === 'huggingface.co' || h.endsWith('.huggingface.co') ||
-      h === 'cdn-lfs.huggingface.co' || h.indexOf('hf.co') !== -1 ||
-      h === 'hf-mirror.com' || h.endsWith('.hf-mirror.com')) {
-    return true;
-  }
-  return false;
-}
-
-self.addEventListener('fetch', function (event) {
-  var req = event.request;
-  if (req.method !== 'GET') return;
-  var url;
-  try { url = new URL(req.url); } catch (e) { return; }
-
-  if (isWhisperAsset(url)) {
-    var isJson = /\.json(\?|$)/.test(url.pathname);
-    event.respondWith(
-      caches.open(AI_CACHE).then(function (cache) {
-        /* JSON (config/tokenizer): network-first so phones never stick on a bad cached config */
-        if (isJson) {
-          return fetch(req).then(function (res) {
-            if (res && res.ok) {
-              try { cache.put(req, res.clone()); } catch (e) {}
-            }
-            return res;
-          }).catch(function () {
-            return cache.match(req).then(function (hit) { return hit || Response.error(); });
-          });
-        }
-        /* onnx / large: cache-first */
-        return cache.match(req).then(function (hit) {
-          if (hit) return hit;
-          return fetch(req).then(function (res) {
-            if (res && res.ok) {
-              try { cache.put(req, res.clone()); } catch (e) {}
-            }
-            return res;
-          }).catch(function () {
-            return cache.match(req);
-          });
-        });
-      })
-    );
-    return;
-  }
-
-  if (isAiCdnRequest(url)) {
-    event.respondWith(
-      caches.open(AI_CACHE).then(function (cache) {
-        return cache.match(req).then(function (hit) {
-          if (hit) return hit;
-          return fetch(req).then(function (res) {
-            if (res && (res.ok || res.type === 'opaque')) {
-              try { cache.put(req, res.clone()); } catch (e) {}
-            }
-            return res;
-          }).catch(function () {
-            return cache.match(req);
-          });
-        });
-      })
-    );
-    return;
-  }
-
-  if (isAudioRequest(url)) {
-    event.respondWith(
-      caches.open(AUDIO_CACHE).then(function (cache) {
-        return cache.match(req).then(function (hit) {
-          if (hit) return hit;
-          return fetch(req).then(function (res) {
-            if (res && res.ok) {
-              try { cache.put(req, res.clone()); } catch (e) {}
-            }
-            return res;
-          }).catch(function () {
-            return cache.match(req);
-          });
-        });
-      })
-    );
-    return;
-  }
-
-  if (url.origin === self.location.origin) {
-    event.respondWith(
-      fetch(req).then(function (res) {
-        if (res && res.ok && (url.pathname.indexOf('mandarin-garden') !== -1 || url.pathname.indexOf('manifest-mandarin') !== -1)) {
-          caches.open(SHELL_CACHE).then(function (cache) {
-            try { cache.put(req, res.clone()); } catch (e) {}
-          });
-        }
-        return res;
-      }).catch(function () {
-        return caches.match(req).then(function (hit) {
-          return hit || caches.match('./mandarin-garden.html');
-        });
-      })
-    );
-  }
+self.addEventListener('fetch',function(event){
+  var req=event.request;if(req.method!=='GET')return;
+  var url=new URL(req.url);
+  if(isWhisperAsset(url)||isAiCdnRequest(url)){event.respondWith(cachedAsset(event,AI_CACHE,true));return;}
+  if(/\/audio\/.+\.mp3$/.test(url.pathname)){event.respondWith(cachedAsset(event,AUDIO_CACHE,false));return;}
+  var isPage=/\/(?:english|mandarin)-garden\.html$/.test(url.pathname);
+  var isShell=isPage||/manifest-(?:english|mandarin)-garden\.webmanifest$|cloud-save\.js$/.test(url.pathname);
+  if(!isShell)return;
+  event.respondWith(fetch(req).then(function(response){
+    if(response&&response.ok)event.waitUntil(caches.open(SHELL_CACHE).then(function(cache){return cache.put(req,response.clone());}).catch(function(){}));
+    return response;
+  }).catch(function(){return caches.open(SHELL_CACHE).then(function(cache){return cache.match(req).then(function(hit){
+    if(hit)return hit;
+    if(isPage)return cache.match(url.origin+url.pathname).then(function(page){return page||Response.error();});
+    return Response.error();
+  });});}));
 });

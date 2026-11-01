@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="mg-build" content="home-v1-20261102w-voice-fix2-pinyin-sent">
+<meta name="mg-build" content="home-v1-20261102w-voice-fix3">
 <meta name="theme-color" content="#f9c5d1">
 <title>普通話花園 · Mandarin Garden</title>
 <link rel="manifest" href="manifest-mandarin-garden.webmanifest">
@@ -203,7 +203,7 @@ body{padding:12px 14px 40px;max-width:520px;margin:0 auto}
 
 <script>
 /* ===== BUILD / SW ===== */
-var MG_BUILD='home-v1-20261102w-voice-fix2-pinyin-sent';
+var MG_BUILD='home-v1-20261102w-voice-fix3';
 document.getElementById('build-pill').textContent=MG_BUILD;
 /* Keep downloaded models across builds. The existing site owns its service worker. */
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
@@ -213,141 +213,100 @@ if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
 /* ===== AUDIO MAP (local first) ===== */
 var AUDIO_MAP={"媽":"audio/378b3f3d82e4be66.mp3","麻":"audio/433ea2216fa5deb1.mp3","馬":"audio/2d808ebf1e5cbdd2.mp3","罵":"audio/078bf0c3d2d7dda2.mp3","湯":"audio/d30c74c900e993fd.mp3","糖":"audio/3d8cd510d07e66b2.mp3","躺":"audio/a85402d56570e7c3.mp3","燙":"audio/e7e5f6277c55d402.mp3","書":"audio/a29f6f0625dc2cd1.mp3","熟":"audio/b6a781ab19c03cc8.mp3","鼠":"audio/fbcd574974fb9825.mp3","樹":"audio/e660f3571e949428.mp3","方":"audio/2e9c5afd29ffae27.mp3","房":"audio/510cf918d2af08c1.mp3","訪":"audio/937829d93f9c2aea.mp3","放":"audio/6967b59e3d6331c3.mp3","爸":"audio/a732e56e22fb59b8.mp3","波":"audio/23918671df892a4c.mp3","波浪":"audio/111f3acb3a065976.mp3","一波":"audio/c064ff0e8f992da0.mp3","我說——波":"audio/2f2478c58042c7ac.mp3","我說——爸":"audio/168ff241fa8dfa31.mp3","我說——不":"audio/fd243b7d68ae6506.mp3","我說——白":"audio/5a93e273a81ab3e9.mp3","我說——四":"audio/ba8a639ae593714e.mp3","爸爸":"audio/0d00c80f61a7b01b.mp3","不":"audio/8fa7401e9077e3ab.mp3","白":"audio/4a1ae3cda4beb527.mp3","一":"audio/d274eee8a175062a.mp3","二":"audio/1d5639f716b643b7.mp3","三":"audio/49ddb069d5b83585.mp3","四":"audio/4f88740b348014a4.mp3","你好，請問洗手間在哪裡？":"audio/a0f207fe2373f058.mp3","我想點一杯熱咖啡。":"audio/2fa11bed1c4ce14c.mp3","今天天氣很好。":"audio/f0d2f344ebfe8f4e.mp3","請給我菜單。":"audio/86a31900b49273a6.mp3","飛機什麼時候起飛？":"audio/d944a89fdda7668c.mp3","這個多少錢？":"audio/b9e47870213990d8.mp3","我迷路了，可以幫我嗎？":"audio/c3044ab0c2221da4.mp3","明天早上九點見。":"audio/58ce8c49b08e8f20.mp3","歡迎光臨！請問幾位？":"audio/3a6960845dd6223d.mp3","兩位。":"audio/2f09fe4fddef75c6.mp3","我想點宮保雞丁。":"audio/74813478bd539cd4.mp3","好的，請稍等。":"audio/a9379a36e600e618.mp3","買單，謝謝。":"audio/23c6ec62e8285c8d.mp3","請問登機口在哪裡？":"audio/2d1971dc913f38b6.mp3","請出示護照和登機牌。":"audio/1034ba78be9a9e9d.mp3","我的行李在哪裡取？":"audio/f824c79eeefa6db9.mp3","航班延誤了三十分鐘。":"audio/2b7c583246e6a698.mp3","這件衣服多少錢？":"audio/027c3e7e85f4f55d.mp3","可以便宜一點嗎？":"audio/94c88aeed88a6627.mp3","我要這件，謝謝。":"audio/36aa5e6dfe2d64e0.mp3","收現金還是刷卡？":"audio/2e6363a089827770.mp3","早上好！":"audio/1eead91e5dce060f.mp3","再見！":"audio/5e22c50109e5a339.mp3","對不起。":"audio/303a6bc8cf793687.mp3","沒關係。":"audio/c54d38416c57cdeb.mp3","謝謝你。":"audio/51679b874e9a2da7.mp3","不客氣。":"audio/c451211688c2946e.mp3","春天來了，公園裡的櫻花開得很漂亮。":"audio/d1a9f908f1745964.mp3","小朋友們在花園裡練習普通話。":"audio/6eef0cf019061f24.mp3","每天練習五分鐘，進步會很快。":"audio/e3d91b93e5a62e48.mp3","聽清楚聲調，發音才會準確。":"audio/05da77edf2b68c9e.mp3","請問現在幾點？":"audio/5ae3b31afa87cf0e.mp3","洗手間在左邊。":"audio/49e99248a2a22cfd.mp3","我想去北京。":"audio/cdc206d6d0240a58.mp3","火車站怎麼走？":"audio/670ffbccb397ccda.mp3","您好！":"audio/9a7bd6ed5e59d46c.mp3","你好！":"audio/3faa70ab61f7f758.mp3","侬好！":"audio/9b61f7396f3a84da.mp3","大家好！":"audio/4d72a33f17c94cae.mp3","四川火锅又麻又辣。":"audio/2e52eccb1ccbd2e4.mp3","广东早茶很有名。":"audio/42257d93a9398a2f.mp3","哈尔滨的冰雪大世界很有名。":"audio/506b527f2056ac3f.mp3","西北的羊肉泡馍很香。":"audio/a4e25e04773e8c0e.mp3","北京烤鸭是名菜。":"audio/84d10d5c9531dce5.mp3","上海外滩很漂亮。":"audio/20406bda893b568a.mp3","过年要吃饺子。":"audio/b23df16663dcdc91.mp3","天津的煎饼果子很有名。":"audio/b2b0129c36a23d5a.mp3","承德避暑山庄很漂亮。":"audio/03ce39ba11df845f.mp3","山西的刀削面很好吃。":"audio/9309282bec897af7.mp3","内蒙古的草原很辽阔。":"audio/8b542030e8037306.mp3","大连的海鲜很新鲜。":"audio/45bedba2d4e6c976.mp3","长白山的风景很美。":"audio/e23ba9fa6f92a57c.mp3","苏州园林很有名。":"audio/b65c601d69393b49.mp3","杭州西湖很漂亮。":"audio/f2431785d8fb2d73.mp3","黄山的景色很壮观。":"audio/fcf3a9f4a233fbb9.mp3","厦门鼓浪屿很有名。":"audio/7b53a3ec03ab78c0.mp3","庐山的风景很美。":"audio/2a37cc3d692cbf7f.mp3","泰山是著名的山。":"audio/d1b1ae684dc75d06.mp3","少林寺很有名。":"audio/1b8b5368910fb334.mp3","武汉的热干面很好吃。":"audio/156f41897a4e9d66.mp3","张家界的风景很特别。":"audio/eafcb7fdf6fa70ed.mp3","桂林山水很美。":"audio/2262ee5a0946d459.mp3","三亚的海滩很漂亮。":"audio/4f196951d12571b8.mp3","重庆火锅很有名。":"audio/4b46cf71676d419c.mp3","黄果树瀑布很壮观。":"audio/483c1a6976c32c8a.mp3","云南的过桥米线很好吃。":"audio/d988acbf9db04f19.mp3","布达拉宫很庄严。":"audio/acd6a40158c68041.mp3","兵马俑很有名。":"audio/58ac74e855d2b154.mp3","兰州牛肉面很有名。":"audio/614c9624db6d7d47.mp3","青海湖很美丽。":"audio/ac44991845d23a91.mp3","宁夏的枸杞很有名。":"audio/ef9c85df331e12bb.mp3","新疆的葡萄很甜。":"audio/d79f4bf3d948d0a2.mp3"};
 
-function localAudio(text){
-  var s=String(text||'').replace(/\s+/g,' ').trim();
-  if(!s)return '';
-  if(typeof AUDIO_MAP!=='undefined' && AUDIO_MAP[s])return AUDIO_MAP[s];
-  return '';
+function localAudio(text){var s=String(text||'').replace(/\s+/g,' ').trim();return typeof AUDIO_MAP!=='undefined'&&AUDIO_MAP[s]||'';}
+function egTtsChunks(text){
+  var rest=String(text||'').replace(/\s+/g,' ').trim(),parts=[];
+  while(rest.length>160){var boundary=-1;for(var i=60;i<160;i++)if(/[。！？；，、.!?; ,]/.test(rest[i]))boundary=i+1;
+    if(boundary<0)boundary=160;parts.push(rest.slice(0,boundary).trim());rest=rest.slice(boundary).trim();}
+  if(rest)parts.push(rest);return parts;
 }
-function egIsXiaomi(){
-  try{return /MiuiBrowser|XiaoMi|MiBrowser|HMBrowser|Mobile\/.*XiaoMi/i.test(navigator.userAgent||'');}catch(e){return false;}
-}
+
+
 function ttsUrls(text){
-  var s=String(text||'').replace(/\s+/g,' ').trim().slice(0,180);
-  if(!s)return [];
-  var urls=[];
-  var loc=localAudio(s);
-  if(loc)urls.push(loc);
-  var q=encodeURIComponent(s);
-  // Google gtx zh-CN first (VPN-friendly); then Baidu, Youdao
+  var s=String(text||'').trim();if(!s)return [];
+  var q=encodeURIComponent(s),urls=[],local=localAudio(s);if(local)urls.push(local);
   urls.push('https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=zh-CN&q='+q);
-  urls.push('https://fanyi.baidu.com/gettts?lan=zh&text='+q+'&spd=5&source=web');
-  urls.push('https://dict.youdao.com/dictvoice?audio='+q+'&le=zh');
-  return urls;
+  urls.push('https://fanyi.baidu.com/gettts?lan=zh&text='+q+'&spd=3&source=web');
+  urls.push('https://dict.youdao.com/dictvoice?audio='+q+'&le=zh');return urls;
 }
-var _egSpeakGen=0,_egSpeakTimers=[],_egLastSpeakAt=0,_egLastSpeakText='';
-function egClearSpeakTimers(){
-  for(var i=0;i<_egSpeakTimers.length;i++){try{clearTimeout(_egSpeakTimers[i]);}catch(e){}}
-  _egSpeakTimers=[];
-}
+function ttsUrl(text){return ttsUrls(text)[0]||'';}
+var _egSpeakGen=0,_egSpeakTimers=[],_egAudioTaskCancel=null,_egSynthCancel=null,_egVoicesCleanup=null,_egUtterance=null;
+var _egLastSpeakAt=0,_egLastSpeakText='';
+function egClearSpeakTimers(){_egSpeakTimers.forEach(clearTimeout);_egSpeakTimers=[];}
 function egStopSpeech(){
-  _egSpeakGen++;
-  egClearSpeakTimers();
-  try{if(window._egMine)window._egMine.pause();}catch(e){}
-  try{if(window._egAudio){window._egAudio.pause();window._egAudio.onerror=null;window._egAudio.onended=null;}}catch(e){}
-  try{var au=document.getElementById('tts-audio');if(au){au.pause();au.onerror=null;au.onended=null;au.onplaying=null;}}catch(e){}
+  _egSpeakGen++;egClearSpeakTimers();
+  if(_egVoicesCleanup){_egVoicesCleanup();_egVoicesCleanup=null;}
+  if(_egAudioTaskCancel){var cancel=_egAudioTaskCancel;_egAudioTaskCancel=null;cancel();}
+  if(_egSynthCancel){var synthCancel=_egSynthCancel;_egSynthCancel=null;synthCancel();}
+  ['tts-audio','eg-global-tts','mine-audio'].forEach(function(id){var a=document.getElementById(id);if(a){a.pause();a.onended=null;a.onerror=null;a.onplaying=null;a._egManaged=false;}});
+  [window._egAudio,window._egMine].forEach(function(a){try{if(a)a.pause();}catch(e){}});
   try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
-  return _egSpeakGen;
+  _egUtterance=null;return _egSpeakGen;
 }
-function fillTtsPlayer(text, opts){
-  opts=opts||{};
-  var slot=document.getElementById('tts-player');
-  if(!slot)return;
-  var s=String(text||'').replace(/\s+/g,' ').trim();
-  var loc=localAudio(s);
-  var urls=ttsUrls(s);
-  var remotes=urls.filter(function(u){return u&&u!==loc;});
-  var hasLocal=!!loc;
-  var primary=loc||(remotes[0]||'');
-  var auExist=document.getElementById('tts-audio');
-  if(auExist&&slot._egTtsText===s&&document.getElementById('tts-sys')){
-    if(opts.fromSpeak){try{auExist.pause();auExist.currentTime=0;}catch(e){}}
-    return;
-  }
-  if(auExist){try{auExist.pause();}catch(e){}}
-  slot._egTtsText=s;
-  slot.innerHTML='<div style="font-size:.78rem;color:#8a6a78;margin:0 0 6px">'+(hasLocal?'示範音檔（本地）':(primary?'示範音檔（可撳 ▶）':'無本地音檔'))+'</div>'+
-    '<audio id="tts-audio" controls playsinline preload="metadata" style="width:100%;height:40px"></audio>'+
-    '<button class="btn ghost sm" type="button" id="tts-sys" style="margin-top:6px;width:100%">📢 用手機系統朗讀</button>';
-  var au=document.getElementById('tts-audio');
-  try{au.addEventListener('play',function(){
-    if(egPracticeBusy){au.pause();toast('請先停止練習再播放示範');return;}
-    try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
-    try{if(window._egAudio)window._egAudio.pause();}catch(e){}
-    egClearSpeakTimers();
-  });}catch(e){}
-  if(primary){
-    try{au.src=primary;}catch(e){}
-    if(!opts.fromSpeak){try{au.load();}catch(e){}}
-  }
-  var sys=document.getElementById('tts-sys');
-  if(sys)bindTap(sys,function(){
-    try{var a=document.getElementById('tts-audio');if(a)a.pause();}catch(e){}
-    speakSynth(s,0.92,null,{sync:true});
-    toast('系統朗讀');
+function fillTtsPlayer(text,opts){
+  opts=opts||{};var slot=document.getElementById('tts-player');if(!slot)return;
+  var s=String(text||'').replace(/\s+/g,' ').trim(),existing=document.getElementById('tts-audio');
+  if(existing&&slot._egTtsText===s)return;
+  if(existing)existing.pause();slot._egTtsText=s;
+  slot.innerHTML='<div style="font-size:.78rem;color:#607d8b;margin-bottom:6px">普通話示範 · 可朗讀全文</div><audio id="tts-audio" controls playsinline preload="none" style="width:100%;height:40px"></audio><button class="speak-btn" type="button" id="tts-sys">📢 用手機系統朗讀</button>';
+  var a=document.getElementById('tts-audio'),chunks=egTtsChunks(s);
+  a.src=localAudio(s)||(chunks.length?ttsUrls(chunks[0])[0]:'');
+  a.addEventListener('play',function(){
+    if(a._egManaged)return;
+    if(egPracticeBusy){a.pause();toast('請先停止錄音再播放');return;}
+    speak(s,.92,true);
   });
+  bindTap(document.getElementById('tts-sys'),function(){if(egPracticeBusy){toast('請先停止錄音再播放');return;}speakSynth(s,.92);});
 }
-function speak(text,rate){
-  if(egPracticeBusy){toast('請先停止練習再播放示範');return;}
-  try{
-    if(!text)return;
-    var s=String(text).replace(/\s+/g,' ').trim();
-    if(!s)return;
-    var now=Date.now();
-    if(s===_egLastSpeakText && (now-_egLastSpeakAt)<400)return;
-    _egLastSpeakAt=now;_egLastSpeakText=s;
-    var gen=egStopSpeech();
-    var xiaomi=egIsXiaomi();
-    var slot=document.getElementById('tts-player');
-    if(slot)fillTtsPlayer(s,{gen:gen,fromSpeak:true});
-    var loc=localAudio(s);
-    var remotes=ttsUrls(s).filter(function(u){return u&&u!==loc;});
-    var au=document.getElementById('tts-audio');
-    function playOnTts(url){
-      return new Promise(function(resolve,reject){
-        if(gen!==_egSpeakGen){reject(new Error('stale'));return;}
-        if(!au||!url){reject(new Error('no audio'));return;}
-        try{if(window._egAudio){window._egAudio.pause();}}catch(e){}
-        var settled=false,hang=null;
-        function win(){if(settled)return;settled=true;try{clearTimeout(hang);}catch(e){}try{au.onerror=null;au.onplaying=null;}catch(e){}resolve(true);}
-        function lose(){if(settled)return;settled=true;try{clearTimeout(hang);}catch(e){}try{au.onerror=null;au.onplaying=null;au.pause();}catch(e){}reject(new Error('play fail'));}
-        try{
-          au.onplaying=function(){win();};
-          au.onerror=function(){lose();};
-          if(au.getAttribute('src')!==url){au.src=url;}
-          hang=setTimeout(function(){
-            try{if(!settled && au.currentTime>0.05){win();return;}}catch(e){}
-            lose();
-          },1500);
-          var pr=au.play();
-          if(pr&&pr.then){pr.then(function(){win();}).catch(function(){try{if(au.currentTime>0.05){win();return;}}catch(e){}lose();});}
-        }catch(e){lose();}
-      });
-    }
-    function tryRemote(i){
-      if(gen!==_egSpeakGen)return;
-      if(i>=remotes.length){speakSynth(s,rate,gen,{sync:false});return;}
-      playOnTts(remotes[i]).catch(function(){if(gen===_egSpeakGen)tryRemote(i+1);});
-    }
-    if(loc){
-      toast('🔊 朗讀中');
-      playOnTts(loc).catch(function(){if(gen===_egSpeakGen)tryRemote(0);});
-      return;
-    }
-    if(xiaomi){
-      toast('🔊 朗讀中');
-      speakSynth(s,rate,gen,{sync:true});
-      if(remotes.length && au){try{au.src=remotes[0];}catch(e){}}
-      return;
-    }
-    if(remotes.length){
-      toast('🔊 朗讀中');
-      tryRemote(0);
-    }else{
-      speakSynth(s,rate,gen,{sync:true});
-      toast('🔊 朗讀中');
-    }
-  }catch(e){speakSynth(String(text),rate,null,{sync:true});}
+function egTtsAudio(){
+  var a=document.getElementById('tts-audio')||document.getElementById('eg-global-tts');
+  if(!a){a=document.createElement('audio');a.id='eg-global-tts';a.hidden=true;a.playsInline=true;document.body.appendChild(a);}return a;
+}
+function speak(text,rate,native){
+  if(egPracticeBusy){toast('請先停止錄音再播放');return Promise.resolve(false);}
+  var s=String(text||'').replace(/\s+/g,' ').trim();if(!s)return Promise.resolve(false);
+  var now=Date.now();if(!native&&s===_egLastSpeakText&&now-_egLastSpeakAt<300)return Promise.resolve(false);
+  _egLastSpeakText=s;_egLastSpeakAt=now;
+  var gen=egStopSpeech();fillTtsPlayer(s,{fromSpeak:true});
+  var a=egTtsAudio(),chunks=egTtsChunks(s);a._egManaged=true;
+  function playOne(url){
+    return new Promise(function(resolve,reject){
+      if(gen!==_egSpeakGen){reject(new Error('cancelled'));return;}
+      var ended=false,startTimer,endTimer;
+      function finish(err){
+        if(ended)return;ended=true;clearTimeout(startTimer);clearTimeout(endTimer);
+        a.onplaying=null;a.onended=null;a.onerror=null;
+        if(_egAudioTaskCancel===cancel)_egAudioTaskCancel=null;
+        if(err){a.pause();reject(err);}else resolve(true);
+      }
+      function cancel(){finish(new Error('cancelled'));}
+      _egAudioTaskCancel=cancel;
+      a.onplaying=function(){clearTimeout(startTimer);endTimer=setTimeout(function(){finish(new Error('playback-timeout'));},90000);};
+      a.onended=function(){finish();};a.onerror=function(){finish(new Error('audio-unavailable'));};
+      a._egManaged=true;a.playbackRate=Math.max(.5,Math.min(1.5,rate||.92));
+      if(a.getAttribute('src')!==url)a.src=url;
+      try{a.currentTime=0;}catch(e){}
+      startTimer=setTimeout(function(){finish(new Error('audio-start-timeout'));},6000);
+      try{var p=a.play();if(p&&p.catch)p.catch(finish);}catch(e){finish(e);}
+    });
+  }
+  function sources(urls,i){
+    if(gen!==_egSpeakGen)return Promise.resolve(false);
+    if(i>=urls.length)return Promise.resolve(false);
+    return playOne(urls[i]).catch(function(){return gen===_egSpeakGen?sources(urls,i+1):false;});
+  }
+  function next(i){
+    if(gen!==_egSpeakGen)return Promise.resolve(false);
+    if(i>=chunks.length)return Promise.resolve(true);
+    var urls=ttsUrls(chunks[i]);if(i===0&&local)urls=urls.filter(function(url){return url!==local;});
+    return sources(urls,0).then(function(ok){
+      if(gen!==_egSpeakGen)return false;
+      if(ok)return next(i+1);
+      return speakSynth(chunks.slice(i).join(' '),rate,gen,{sync:true});
+    });
+  }
+  var local=localAudio(s),task=local?playOne(local).catch(function(){return gen===_egSpeakGen?next(0):false;}):next(0);
+  return task.then(function(ok){if(gen===_egSpeakGen)a._egManaged=false;return ok;},function(){if(gen===_egSpeakGen){a._egManaged=false;toast('朗讀未能完成，請再試');}return false;});
 }
 function egChooseMandarinVoice(voices){
   var patterns=[/^zh[-_]CN$/i,/^(?:cmn|zh[-_]Hans)/i,/^zh[-_](?:TW|SG)$/i];
@@ -355,63 +314,41 @@ function egChooseMandarinVoice(voices){
   for(var j=0;j<voices.length;j++)if(/普通[話话]|國語|国语|Mandarin/i.test(voices[j].name||'')&&!/yue|zh[-_]HK/i.test(voices[j].lang||''))return voices[j];
   return null;
 }
+
 function speakSynth(text,rate,keepGen,opts){
-  if(egPracticeBusy)return;
-  try{
-    opts=opts||{};
-    if(!window.speechSynthesis){toast('呢部機無系統朗讀');return;}
-    var gen=(keepGen!=null)?keepGen:egStopSpeech();
-    try{if(window._egAudio)window._egAudio.pause();}catch(e){}
-    try{var au=document.getElementById('tts-audio');if(au)au.pause();}catch(e){}
-    if(!opts.sync){try{speechSynthesis.cancel();}catch(e){}}
-    else{try{if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();}catch(e){}}
-    var s=String(text||'');
-    var parts=s.match(/[^.!?。！？]+[.!?。！？]?/g)||[s];
-    var idx=0;
+  if(egPracticeBusy)return Promise.resolve(false);opts=opts||{};
+  var gen=keepGen==null?egStopSpeech():keepGen;
+  return new Promise(function(resolve){
+    if(!window.speechSynthesis){toast('未有系統普通話語音，請檢查手機朗讀設定');resolve(false);return;}
+    var synth=window.speechSynthesis,chunks=egTtsChunks(text),index=0,started=false,finished=false;
+    ['tts-audio','eg-global-tts'].forEach(function(id){var a=document.getElementById(id);if(a)a.pause();});
+    function cancelSynth(){finish(false);}
+    _egSynthCancel=cancelSynth;
+    function finish(ok){if(finished)return;finished=true;if(_egSynthCancel===cancelSynth)_egSynthCancel=null;_egUtterance=null;resolve(ok);}
     function next(){
-      if(gen!==_egSpeakGen)return;
-      if(idx>=parts.length)return;
-      var chunk=parts[idx++].trim();
-      if(!chunk){next();return;}
-      var u=new SpeechSynthesisUtterance(chunk);
-      u.lang='zh-CN';u.rate=rate||0.92;u.volume=1;
-      var vs=[];try{vs=speechSynthesis.getVoices()||[];}catch(e){}
-      var mandarinVoice=egChooseMandarinVoice(vs);if(mandarinVoice)u.voice=mandarinVoice;
-      u.onend=function(){if(gen===_egSpeakGen)next();};
-      u.onerror=function(){if(gen===_egSpeakGen)toast('系統朗讀失敗；請檢查手機中文語音，或撳音訊播放器重試');};
-      try{speechSynthesis.speak(u);}catch(e){}
+      if(gen!==_egSpeakGen){finish(false);return;}
+      if(index>=chunks.length){finish(true);return;}
+      var u=new SpeechSynthesisUtterance(chunks[index++]);_egUtterance=u;u.lang='zh-CN';u.rate=rate||.92;u.volume=1;
+      var voices=synth.getVoices()||[],voice=egChooseMandarinVoice(voices);if(voice)u.voice=voice;
+      u.onend=function(){if(gen===_egSpeakGen)next();else finish(false);};
+      u.onerror=function(){if(gen===_egSpeakGen)toast('系統普通話朗讀失敗，請檢查語音設定');finish(false);};
+      try{synth.speak(u);if(synth.paused)synth.resume();}catch(e){finish(false);}
     }
-    var speechStarted=false;
-    function startSpeaking(){
-      if(gen!==_egSpeakGen||speechStarted)return;
-      speechStarted=true;
-      next();
-      var t1=setTimeout(function(){if(gen!==_egSpeakGen)return;try{if(speechSynthesis.paused)speechSynthesis.resume();}catch(e){}},80);
-      _egSpeakTimers.push(t1);
+    function start(){if(started)return;started=true;if(_egVoicesCleanup){_egVoicesCleanup();_egVoicesCleanup=null;}next();}
+    if(!(synth.getVoices()||[]).length){
+      function changed(){start();}synth.addEventListener('voiceschanged',changed);
+      _egVoicesCleanup=function(){synth.removeEventListener('voiceschanged',changed);};
+      var timer=setTimeout(function(){if(_egVoicesCleanup){_egVoicesCleanup();_egVoicesCleanup=null;}},700);_egSpeakTimers.push(timer);
     }
-    egClearSpeakTimers();
-    function kickoff(){
-      if(gen!==_egSpeakGen)return;
-      var vs=[];try{vs=speechSynthesis.getVoices()||[];}catch(e){}
-      if(!vs.length){
-        var fired=false;
-        function onVoices(){if(fired)return;fired=true;try{speechSynthesis.removeEventListener('voiceschanged',onVoices);}catch(e){}if(gen===_egSpeakGen)startSpeaking();}
-        try{speechSynthesis.addEventListener('voiceschanged',onVoices);}catch(e){}
-        startSpeaking();
-        var t2=setTimeout(function(){if(fired)return;fired=true;try{speechSynthesis.removeEventListener('voiceschanged',onVoices);}catch(e){}},500);
-        _egSpeakTimers.push(t2);
-      }else startSpeaking();
-    }
-    if(opts.sync)kickoff();
-    else{var t0=setTimeout(kickoff,30);_egSpeakTimers.push(t0);}
-  }catch(e){toast('系統朗讀失敗');}
+    start();
+  });
 }
 
-/* ===== ASR / Whisper（穩陣 AI · 本機多語 whisper-tiny · zh-CN） ===== */
+/* ===== ASR / Whisper（穩陣 AI · 本機多語 whisper-base · zh-CN） ===== */
 /* Shared capture: one microphone owner, with session-local callbacks. */
 function egNewRec(){return {stream:null,mr:null,chunks:[],url:null,blob:null,startedAt:0,mime:'',pcmChunks:[],pcmCtx:null,pcmNode:null,pcmSrc:null,pcmGain:null,pcmRate:0,pcmPeak:0,pcmLevel:0,pcmKeep:null,cancelled:false,active:false,meterRaf:0};}
 var egRec=egNewRec(),egCaptureGen=0;
-var egWhisper={pipe:null,loading:null,ready:false,lastErr:'',progress:0,modelRemote:'Xenova/whisper-tiny',listeners:[],inference:null};
+var egWhisper={pipe:null,loading:null,ready:false,lastErr:'',progress:0,modelRemote:'Xenova/whisper-base',listeners:[],inference:null};
 var egRecog={rec:null,want:false,restartTimer:null,graceTimer:null,lastError:'',partial:'',interim:'',committed:'',session:'',final:'',gen:0,stopFinish:null};
 var egPracticeCleanup=null,egPracticeBusy=false;
 function egCancelPractice(){if(egPracticeCleanup){var f=egPracticeCleanup;egPracticeCleanup=null;f();}egStopRecognizeHard();egClearRec();}
@@ -541,7 +478,7 @@ function egStopStableOnly(){
   rec.active=false;
   function finish(){
     var pcm=egCollectPcm(rec);
-    if(pcm&&pcm.data.length){rec.pcmKeep=pcm;rec.blob=egPcmToWavBlob(egResampleTo16k(pcm.data,pcm.rate,{padSec:0,maxSec:45}),16000);}
+    if(pcm&&pcm.data.length){rec.pcmKeep=pcm;rec.blob=egPcmToWavBlob(egResampleTo16k(pcm.data,pcm.rate,{padSec:0,maxSec:120}),16000);}
     else if(rec.chunks.length)rec.blob=new Blob(rec.chunks,{type:rec.mime||'audio/webm'});
     egReleaseCapture(rec);
     if(rec.blob&&!rec.cancelled){if(rec.url)URL.revokeObjectURL(rec.url);rec.url=URL.createObjectURL(rec.blob);}
@@ -575,7 +512,7 @@ function egResampleTo16k(mono,fromRate,opt){
     if(ratio<=1){var pos=i*ratio,left=Math.floor(pos),frac=pos-left;out[i]=mono[left]*(1-frac)+mono[Math.min(left+1,mono.length-1)]*frac;}
     else{var a=i*ratio,b=Math.min((i+1)*ratio,mono.length),sum=0;for(var j=Math.floor(a);j<b;j++)sum+=mono[j]*(Math.min(b,j+1)-Math.max(a,j));out[i]=sum/(b-a);}
   }
-  var max=Math.round((opt.maxSec||40)*16000);if(out.length>max)out=out.slice(0,max);
+  var max=Math.round((opt.maxSec||120)*16000);if(out.length>max)out=out.slice(0,max);
   var pad=Math.round((opt.padSec==null?0.25:opt.padSec)*16000),padded=new Float32Array(out.length+pad*2);padded.set(out,pad);return padded;
 }
 var egAiModeMemory='';
@@ -594,7 +531,7 @@ function egBlobToWhisperAudio(blob,opt){
   }).finally(function(){try{if(ctx){var p=ctx.close();if(p&&p.catch)p.catch(function(){});}}catch(e){}});
 }
 function egAudioForWhisper(blob,promptText,pcm){
-  var opt={padSec:0.25,maxSec:40};
+  var opt={padSec:0.25,maxSec:120};
   if(pcm&&pcm.data&&pcm.data.length)return Promise.resolve(egResampleTo16k(pcm.data,pcm.rate,opt));
   if(!blob||blob.size<100)return Promise.reject(new Error('錄音未收到資料，請重新開咪。'));
   return egBlobToWhisperAudio(blob,opt);
@@ -635,7 +572,7 @@ function egZhSimpTradMap(){
 }
 function egZhNormChar(c){
   if(!egZhNormChar.map){
-    var traditional=Array.from('並乾亂亞佈佔來係個們側傘備傳傷傾僅價儀優儲兒內兩凍凱別則剛創劃動務勢勵勻匯區卻參員問啟單嗎嗰嘗嚐嚴囑國圍園圓圖團報場塊壩壯夾媽學宮實寧寫寬寶專尋對導層屬岡島峽嶺嶼嶽師帳帶幫幾庫廈廚廟廣廬廳張強後從徵愛態慣慶應戰戶捲掃掛採揀揚換搵撥撳擇擔攤敗數斬斷於時晝暫曆曉曬書會東條棧業極構樂樓標樣樸樹橋機檔檢櫻歡歷殺氣決沒況涼減測湯準溝溫滷滾滿漢漸漿潑潛澆澤濃濕濟濱瀋瀏灘為烏無煙煩熱燈燉燒燙燴燻爾牆狀狹獨獲現瑪環產畫異當發盡眾確碼禦禪禮種稱穀積穩穫窩競筍節範築簡籠粵糧糰約紅紙級紡細紹組結絕絡給統絲經綠維網緊緒線練緻繞繫續缽罵義習聞聯聲聽肅腦腸臘臨臺與興莊華萬葉蓋蓮蔔蔥蔭薑薦薩藍藝蘇蘋蘭蘿處號蝦螄螞術衛衝裏補裝裡製見規視親覺覽觀觸訂計訊記訪設許訴註評詞詢試話該認誒語誤說誰課調談請講謝識議護讀變讓讚豎豐豬貓貝貨販貳貴買費貼資賞賣質購跡車軌軟較載輕輩輸轉農這連進遊運過達遙遠適遲選遺遼還邊鄉鄰醃醫醬釀銅錄錢錯鍋鍵鎖鎮鐘鐵長門閃閉開閒間閘閩閱闆闊關陝陣陰陳陸陽隊際隨險隱隴隻雖雙雜雞離難雲電霧靜韻響頁頂項順須預頓頭顆題額顏類顯風飛飩飯飲飽飾餃餅養餓餘餛餡館餵饃饅饢馬駁駕騎騰驗驢體髮鬧魚魯鮮鱖鳳鳴鴨鶴鹹鹽麗麥麵麼黃點齊龍'),simplified=Array.from('并干乱亚布占来系个们侧伞备传伤倾仅价仪优储儿内两冻凯别则刚创划动务势励匀汇区却参员问启单吗𠮶尝尝严嘱国围园圆图团报场块坝壮夹妈学宫实宁写宽宝专寻对导层属冈岛峡岭屿岳师帐带帮几库厦厨庙广庐厅张强后从征爱态惯庆应战户卷扫挂采拣扬换揾拨揿择担摊败数斩断于时昼暂历晓晒书会东条栈业极构乐楼标样朴树桥机档检樱欢历杀气决没况凉减测汤准沟温卤滚满汉渐浆泼潜浇泽浓湿济滨沈浏滩为乌无烟烦热灯炖烧烫烩熏尔墙状狭独获现玛环产画异当发尽众确码御禅礼种称谷积稳获窝竞笋节范筑简笼粤粮团约红纸级纺细绍组结绝络给统丝经绿维网紧绪线练致绕系续钵骂义习闻联声听肃脑肠腊临台与兴庄华万叶盖莲卜葱荫姜荐萨蓝艺苏苹兰萝处号虾蛳蚂术卫冲里补装里制见规视亲觉览观触订计讯记访设许诉注评词询试话该认诶语误说谁课调谈请讲谢识议护读变让赞竖丰猪猫贝货贩贰贵买费贴资赏卖质购迹车轨软较载轻辈输转农这连进游运过达遥远适迟选遗辽还边乡邻腌医酱酿铜录钱错锅键锁镇钟铁长门闪闭开闲间闸闽阅板阔关陕阵阴陈陆阳队际随险隐陇只虽双杂鸡离难云电雾静韵响页顶项顺须预顿头颗题额颜类显风飞饨饭饮饱饰饺饼养饿余馄馅馆喂馍馒馕马驳驾骑腾验驴体发闹鱼鲁鲜鳜凤鸣鸭鹤咸盐丽麦面么黄点齐龙'),map=Object.create(null);
+    var traditional=Array.from('丟並乾亂亞佈佔來係個們側傘備傳傷傾僅價儀億優儲兌兒內兩冊凍凱別則剛創劃劇動務勢勵勻匯區卻參員問啟單嗎嗰嘗嘩噴嚐嚴囑國圍園圓圖團堅報場塊壞壩壯壺夠夾奮媽學宮實寧寫寬寶將專尋對導層屬岡島峽嶺嶼嶽師帳帶幣幫幾庫廂廈廚廟廠廣廬廳張強後從復徵悶愛態慣慳慶應戰戲戶捲掃掛採揀揚換損搵撐撥撳撻擁擇擋擔據擠攤敗數斬斷於時晝暢暫曆曉曬書會東條棧業極構樁樂樑樓標樣樸樹橋機橫檔檢檯檸櫻歡歲歷殺毀氣決沒沖況涼淨減測湯準溝溫滷滾滿漢漸漿潑潔潛澆澤濃濕濟濱瀋瀏灘為烏無煙煩熒熱燈燉燒燙燴燻爾牆狀狹獎獨獲現瑪環產畫異當發盞盡盤眾確碼礙禦禪禮種稱穀積穩穫窩競筆筍節範築簡簽簾籠粵糧糰糾紀約紅純紙級紡細紹終組結絕絡給統絲經綠維網緊緒線練緻縫總繞繫繼續纖缽罵義習聞聯聲職聽肅脫腦腳腸膠臉臘臨臺與興莊華萬葉蓋蓮蔔蔥蔭蕩薑薦薩藍藝藥蘇蘋蘭蘿處虛號蝦螄螞術衛衝裏補裝裡製複褲襯見規視親覺覽觀觸訂計訊記訪設許訴診註評詞詢試話該誌認誒語誤說誰課調談請講謝證識譯議護讀變讓讚豎豐豬貓貝財貨販貳貴買費貼賀資賞賣質賬購跡車軌軟較載輕輩輪輸轉辦辭農這連週進遊運過達遙遠適遲選遺遼還邊郵鄉鄰醃醫醬釀釘針鈕銀銅銷錄錢錯錶鍊鍋鍵鍾鎖鎮鏡鐘鐵鑰長門閃閉開閑閒間閘閩閱闆闊關陝陣陰陳陸陽隊階際隨險隱隴隻雖雙雜雞離難雲電霧靚靜韻響頁頂項順須預頓頭頻顆題額顏類顧顯風飛飩飪飯飲飽飾餃餅養餓餘餛餡館餵餸饃饅饢馬駁駕騎騰驗驢體髮鬧魚魯鮮鱖鳳鳴鴨鵝鶴鹹鹽麗麥麵麼黃點齊龍'),simplified=Array.from('丢并干乱亚布占来系个们侧伞备传伤倾仅价仪亿优储兑儿内两册冻凯别则刚创划剧动务势励匀汇区却参员问启单吗𠮶尝哗喷尝严嘱国围园圆图团坚报场块坏坝壮壶够夹奋妈学宫实宁写宽宝将专寻对导层属冈岛峡岭屿岳师帐带币帮几库厢厦厨庙厂广庐厅张强后从复征闷爱态惯悭庆应战戏户卷扫挂采拣扬换损揾撑拨揿挞拥择挡担据挤摊败数斩断于时昼畅暂历晓晒书会东条栈业极构桩乐梁楼标样朴树桥机横档检台柠樱欢岁历杀毁气决没冲况凉净减测汤准沟温卤滚满汉渐浆泼洁潜浇泽浓湿济滨沈浏滩为乌无烟烦荧热灯炖烧烫烩熏尔墙状狭奖独获现玛环产画异当发盏尽盘众确码碍御禅礼种称谷积稳获窝竞笔笋节范筑简签帘笼粤粮团纠纪约红纯纸级纺细绍终组结绝络给统丝经绿维网紧绪线练致缝总绕系继续纤钵骂义习闻联声职听肃脱脑脚肠胶脸腊临台与兴庄华万叶盖莲卜葱荫荡姜荐萨蓝艺药苏苹兰萝处虚号虾蛳蚂术卫冲里补装里制复裤衬见规视亲觉览观触订计讯记访设许诉诊注评词询试话该志认诶语误说谁课调谈请讲谢证识译议护读变让赞竖丰猪猫贝财货贩贰贵买费贴贺资赏卖质账购迹车轨软较载轻辈轮输转办辞农这连周进游运过达遥远适迟选遗辽还边邮乡邻腌医酱酿钉针钮银铜销录钱错表炼锅键钟锁镇镜钟铁钥长门闪闭开闲闲间闸闽阅板阔关陕阵阴陈陆阳队阶际随险隐陇只虽双杂鸡离难云电雾靓静韵响页顶项顺须预顿头频颗题额颜类顾显风飞饨饪饭饮饱饰饺饼养饿余馄馅馆喂𩠌馍馒馕马驳驾骑腾验驴体发闹鱼鲁鲜鳜凤鸣鸭鹅鹤咸盐丽麦面么黄点齐龙'),map=Object.create(null);
     for(var i=0;i<traditional.length;i++)map[traditional[i]]=simplified[i];
     egZhNormChar.map=map;
   }
@@ -685,15 +622,59 @@ var EG_SHORT_READINGS={
   '一':{py:'yī',base:'yi',tone:1,word:'第一',sentence:'今天是第一天。'},'二':{py:'èr',base:'er',tone:4,word:'第二',sentence:'請看第二頁。'},
   '三':{py:'sān',base:'san',tone:1,word:'第三',sentence:'請讀第三題。'},'四':{py:'sì',base:'si',tone:4,word:'第四',sentence:'這是第四個。'}
 };
-function egShortReading(target){
-  var z=egZhNormText(target);
-  for(var key in EG_SHORT_READINGS)if(egZhNormText(key)===z)return EG_SHORT_READINGS[key];
-  return null;
+var egReadingCache=null;
+function egToneFromPinyin(py){
+  py=String(py||'').normalize('NFC');var marks=['','āēīōūǖ','áéíóúǘń','ǎěǐǒǔǚň','àèìòùǜǹ'];
+  for(var t=1;t<=4;t++)for(var i=0;i<marks[t].length;i++)if(py.indexOf(marks[t][i])>=0)return t;
+  var digit=py.match(/[1-5]$/);return digit?Number(digit[0]):5;
 }
+function egReadingMap(){
+  if(egReadingCache)return egReadingCache;
+  var raw=Object.create(null),normalized=Object.create(null),bases=Object.create(null);
+  function add(entry){
+    if(!entry||!entry.zh||!entry.py||Array.from(entry.zh).length!==1)return;
+    var fixed=EG_SHORT_READINGS[entry.zh]||{},base=egToneStripPy(entry.py);
+    if(!base)return;
+    var reading={py:entry.py,base:base,tone:typeof entry.tone==='number'?entry.tone:egToneFromPinyin(entry.py),word:fixed.word||entry.zh,sentence:entry.sentence||fixed.sentence||('我正在讀「'+entry.zh+'」這個字。')};
+    raw[entry.zh]=reading;var key=egZhNormText(entry.zh);if(!normalized[key])normalized[key]=reading;bases[base]=true;
+  }
+  Object.keys(EG_SHORT_READINGS).forEach(function(zh){var item=EG_SHORT_READINGS[zh];add({zh:zh,py:item.py,tone:item.tone,sentence:item.sentence});});
+  if(typeof CHAR_BANK!=='undefined')CHAR_BANK.forEach(add);
+  if(typeof TONE_SETS!=='undefined')TONE_SETS.forEach(function(group){(group.items||[]).forEach(function(entry){if(!raw[entry.zh])add(entry);});});
+  egReadingCache={raw:raw,normalized:normalized,bases:bases};return egReadingCache;
+}
+function egZhNumber(value){
+  var n=Number(value),digits='零一二三四五六七八九';
+  if(n<10)return digits[n];if(n<100)return (n<20?'':digits[Math.floor(n/10)])+'十'+(n%10?digits[n%10]:'');
+  if(n<10000){var units=['千','百','十',''],out='',pendingZero=false;for(var power=3;power>=0;power--){var p=Math.pow(10,power),digit=Math.floor(n/p)%10;if(digit){if(pendingZero)out+='零';out+=digits[digit]+units[3-power];pendingZero=false;}else if(out&&n%p)pendingZero=true;}return out;}
+  return String(value).split('').map(function(d){return digits[Number(d)];}).join('');
+}
+function egZhCompareChars(text){return Array.from(egZhNormText(egNormalizeShortNumbers(text))).filter(function(c){return /[\u4e00-\u9fffA-Za-z0-9]/.test(c);});}
+function egScoreZhText(target,said){
+  var raw=cleanZhHeard(said),tt=egZhCompareChars(target),ss=egZhCompareChars(raw),n=tt.length,m=ss.length;
+  if(n===1&&egPinyinMatchesTarget(raw,target))ss=tt.slice(),m=1;
+  if(!n||!m)return {pct:0,pass:false,said:raw,missing:tt,cover:0,contentCover:0,order:0,farOff:true};
+  var dist=[],lcs=[],i,j;for(i=0;i<=n;i++){dist[i]=new Array(m+1);dist[i][0]=i;lcs[i]=new Array(m+1).fill(0);}for(j=0;j<=m;j++)dist[0][j]=j;
+  for(i=1;i<=n;i++)for(j=1;j<=m;j++){var eq=tt[i-1]===ss[j-1];dist[i][j]=Math.min(dist[i-1][j]+1,dist[i][j-1]+1,dist[i-1][j-1]+(eq?0:1));lcs[i][j]=eq?lcs[i-1][j-1]+1:Math.max(lcs[i-1][j],lcs[i][j-1]);}
+  var pct=Math.round(Math.max(0,1-dist[n][m]/Math.max(n,m))*100),order=lcs[n][m]/n,missing=[];i=n;j=m;
+  while(i>0){if(j>0&&tt[i-1]===ss[j-1]){i--;j--;}else if(j>0&&dist[i][j]===dist[i-1][j-1]+1){missing.unshift(tt[--i]);j--;}else if(j>0&&dist[i][j]===dist[i][j-1]+1)j--;else missing.unshift(tt[--i]);}
+  var critical='',neg=/[不没沒未无無别別莫勿]/,numbers=/[零〇一二两兩三四五六七八九十百千万萬亿億点點半]/;
+  function selected(a,re){return a.filter(function(c){return re.test(c);}).join('');}
+  if(selected(tt,neg)!==selected(ss,neg))critical='negation';
+  if(selected(tt,numbers)!==selected(ss,numbers))critical=critical||'number';
+  if(critical)pct=Math.min(pct,39);
+  return {pct:pct,pass:!critical&&(n<=3?dist[n][m]===0:pct>=80&&order>=.75),said:raw,missing:missing,cover:order,contentCover:order,order:order,farOff:order<.35,critical:critical};
+}
+function egShortReading(target){var map=egReadingMap(),text=String(target||'').trim();return map.raw[text]||map.normalized[egZhNormText(text)]||null;}
+
+
 function egNormalizeShortNumbers(text){
-  var map={'0':'零','1':'一','2':'二','3':'三','4':'四','5':'五','6':'六','7':'七','8':'八','9':'九'};
-  return String(text||'').replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-65248);}).replace(/[0-9]/g,function(c){return map[c];});
+  var s=String(text||'').normalize('NFKC');
+  s=s.replace(/(\d+(?:\.\d+)?)%/g,'百分之$1').replace(/\b(\d{1,2}):(\d{2})\b/g,function(_,h,m){return egZhNumber(h)+'點'+(m==='30'?'半':m==='00'?'':egZhNumber(m)+'分');});
+  return s.replace(/\d+(?:\.\d+)?/g,function(n){var parts=n.split('.');return egZhNumber(parts[0])+(parts[1]?'點'+parts[1].split('').map(function(d){return egZhNumber(d);}).join(''):'');});
 }
+
+
 function egHeardSyllable(raw){
   var text=egNormalizeShortNumbers(egStripWhisperJunk(raw)).trim();
   var han=egHanTarget(text),base='';
@@ -703,7 +684,7 @@ function egHeardSyllable(raw){
     for(var b in groups)if(groups[b].indexOf(han)>=0)return {base:b,text:text};
   }
   if(!han&&/^[a-zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü1-5\s]+$/i.test(text)){
-    base=egToneStripPy(text);if(['ma','tang','shu','fang','ba','bo','bu','bai','yi','er','san','si'].indexOf(base)>=0)return {base:base,text:text};
+    base=egToneStripPy(text);if(egReadingMap().bases[base])return {base:base,text:text};
   }
   return {base:'',text:text};
 }
@@ -772,48 +753,14 @@ function egZhCarrierLine(target){
 }
 
 
-function egExtractTargetChar(text,target){
-  var z=egHanTarget(target);
-  var raw=egNormalizeShortNumbers(egStripWhisperJunk(text));
-  if(!z)return cleanZhHeard(raw,target);
-  /* Pinyin-only hit → map to target */
-  if(egPinyinMatchesTarget(raw,z))return z;
-  var soft={'喔':1,'哦':1,'噢':1,'啊':1,'呀':1,'嗯':1,'呃':1,'唔':1,'啦':1,'嘛':1,'哟':1,'耶':1,'欸':1,'诶':1,'誒':1};
-  var han=zhChars(raw).filter(function(c){return /[\u4e00-\u9fff]/.test(c);});
-  if(!han.length)return egPinyinMatchesTarget(raw,z)?z:'';
-  var joined=han.join('');
-  if(egZhNormText(joined).indexOf(egZhNormText(z))>=0)return z;
-  /* home-v1-20261102p: compound carrier hit (波浪／一波 → 波) */
-  var carrier=egZhCarrierLine(z);
-  var cHan=egHanTarget(carrier);
-  if(cHan && cHan.length>=2 && z.length===1 && cHan.indexOf(z)>=0){
-    if(joined.indexOf(cHan)>=0)return z;
-    var cHit=0;for(var ci=0;ci<cHan.length;ci++){if(joined.indexOf(cHan[ci])>=0)cHit++;}
-    if(cHit===cHan.length)return z;
-  }
-  /* Prefer char after 說/说 — only if matches target/homophone (避免 說不→波 誤配) */
-  var m=joined.match(/[說说][——\-—–]*([\u4e00-\u9fff])/);
-  if(m&&m[1]){
-    if(m[1]===z[0]||(z.length===2&&z.indexOf(m[1])>=0)||egZhHomophoneEq(m[1],z[0]))return z.length===1?z:(z.indexOf(m[1])>=0?z:m[1]);
-  }
-  /* Exact target present */
-  if(z.length===1){
-    if(joined.indexOf(z)>=0)return z;
-    for(var i=0;i<han.length;i++){if(egZhHomophoneEq(han[i],z))return z;}
-    var onlySoft=han.every(function(c){return !!soft[c];});
-    if(onlySoft){
-      if(egPinyinMatchesTarget(raw,z))return z;
-      return '';
-    }
-    return '';
-  }
-  if(joined.indexOf(z)>=0)return z;
-  var hit=0;for(var j=0;j<z.length;j++){if(joined.indexOf(z[j])>=0)hit++;}
-  if(hit===z.length)return z;
-  var onlySoft2=han.every(function(c){return !!soft[c];});
-  if(onlySoft2)return '';
-  return cleanZhHeard(raw,z);
+function egExtractTargetChar(said,target){
+  var raw=egNormalizeShortNumbers(egStripWhisperJunk(said));
+  raw=raw.replace(/^(?:我[說说讀读]|這個字[是讀]|这个字[是读])[\s，,：:——-]*/,'');
+  if(egPinyinMatchesTarget(raw,target))return target;
+  return egHanTarget(raw);
 }
+
+
 function egUpdateWhisperProg(msg,pct,isErr){
   var el=document.getElementById('whisper-prog');if(!el)return;
   el.classList.add('on');
@@ -867,48 +814,58 @@ function egEnsureWhisperLocal(onProg){
   egWhisper.lastErr='';
   var cdn='https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/',alt='https://unpkg.com/@xenova/transformers@2.17.2/dist/';
   var base=new URL('./',egWhisper.pageUrl||location.href).href,localVendor=new URL('transformers/',base).href;
-  var sources=[localVendor,cdn,alt];
-  function progress(msg,pct){egWhisper.progress=pct||0;egWhisper.listeners.slice().forEach(function(fn){try{fn(msg,pct);}catch(e){}});}
+  var sources=[localVendor,cdn,alt],lastProgress=0;
+  var english=/\.en$/.test(egWhisper.modelRemote),folder=english?'whisper-base-en':'whisper-base',fallback=english?'whisper-tiny-en':'whisper-tiny';
+  function progress(msg,pct){
+    egWhisper.progress=pct||0;var now=Date.now();if(pct<1&&now-lastProgress<120)return;lastProgress=now;
+    egWhisper.listeners.slice().forEach(function(fn){try{fn(msg,pct);}catch(e){}});
+  }
   function getLibrary(i){
-    if(i>=sources.length)throw new Error('語音套件載入失敗。請檢查網絡，或上載 transformers/ 套件及 WASM 檔案。');
-    progress(i===0?'檢查本機語音套件…':'下載語音套件…',0.03);
+    if(i>=sources.length)throw new Error('語音套件載入失敗，請檢查網絡後再試。');
+    progress(i===0?'檢查語音套件…':'下載語音套件…',0.03);
     return egWithTimeout(egImportWhisper(sources[i]+'transformers.min.js'),18000,'語音套件').then(function(mod){
       if(!mod.env||!mod.pipeline)throw new Error('語音套件格式無效');return {mod:mod,source:sources[i],local:i===0};
     }).catch(function(){return getLibrary(i+1);});
   }
   function load(ctx){
-    var env=ctx.mod.env,wasm=env.backends.onnx.wasm;
-    env.allowLocalModels=true;env.allowRemoteModels=false;env.localModelPath=base;env.useBrowserCache=true;
-    env.remotePathTemplate='{model}/resolve/{revision}/';wasm.numThreads=1;wasm.proxy=false;
+    var env=ctx.mod.env,wasm=env.backends.onnx.wasm,assets={};
+    env.localModelPath=base;env.useBrowserCache=true;env.remotePathTemplate='{model}/resolve/{revision}/';wasm.numThreads=1;wasm.proxy=false;
     function modelProgress(p){
-      var percent=typeof p.progress==='number'?Math.max(0,Math.min(1,p.progress/100)):0;
-      progress('載入 '+(p.file?String(p.file).split('/').pop():'語音模型')+'…',0.15+percent*0.8);
+      if(p.file&&typeof p.progress==='number')assets[p.file]=Math.max(assets[p.file]||0,p.progress/100);
+      var a=assets['onnx/encoder_model_quantized.onnx']||0,b=assets['onnx/decoder_model_merged_quantized.onnx']||0;
+      progress('載入語音模型：'+(p.file?String(p.file).split('/').pop():'準備中')+'…',.12+Math.min(1,a*.3+b*.7)*.8);
     }
-    function run(id){return ctx.mod.pipeline('automatic-speech-recognition',id,{quantized:true,progress_callback:modelProgress});}
+    function run(id,lightweight){return ctx.mod.pipeline('automatic-speech-recognition',id,{quantized:true,progress_callback:modelProgress}).then(function(pipe){
+      egWhisper.loadedModel=id;egWhisper.lightweight=!!lightweight;egWhisper.label=lightweight?'Whisper tiny（輕量後備，單字較易誤認）':english?'Whisper base.en':'Whisper base';return pipe;
+    });}
+    function local(id,lightweight){
+      env.allowLocalModels=true;env.allowRemoteModels=false;
+      return egFetchLocal(new URL(id+'/config.json',base).href,true).then(function(){return run(id,lightweight);});
+    }
     function remote(i){
       var hosts=['https://huggingface.co/','https://hf-mirror.com/'];
-      if(i>=hosts.length)throw new Error('Whisper 模型下載失敗。首次使用需要網絡；亦可上載完整 whisper-tiny/ 資料夾。');
+      if(i>=hosts.length)throw new Error('較大模型下載失敗');
       env.allowLocalModels=false;env.allowRemoteModels=true;env.remoteHost=hosts[i];
-      progress(i===0?'下載 Whisper 模型；首次約需數十 MB…':'改用模型下載後備連線…',0.12);
-      /* A timed-out pipeline must settle before changing its shared env. */
-      return run(egWhisper.modelRemote).catch(function(){return remote(i+1);});
+      progress(i===0?'下載較準確嘅 Whisper base；首次約 80 MB，錄音會保留…':'改用模型下載後備連線…',.12);
+      // Wait for each pipeline to settle before changing its shared environment.
+      return run(egWhisper.modelRemote,false).catch(function(){return remote(i+1);});
     }
-    function local(){
-      return egFetchLocal(new URL('whisper-tiny/config.json',base).href,true).then(function(){
-        progress('載入本機 Whisper 模型…',0.12);return run('whisper-tiny');
-      }).catch(function(){return remote(0);});
+    function primary(){
+      return local(folder,false).catch(function(){return remote(0);}).catch(function(){
+        progress('較大模型暫時無法下載，改用網站輕量後備模型…',.12);
+        return local(fallback,true).catch(function(){throw new Error('語音模型未能載入。請檢查網絡後重試；你嘅錄音仍可播放。');});
+      });
     }
-    return (ctx.local?egFetchLocal(localVendor+'ort-wasm-simd.wasm',false).then(function(){wasm.wasmPaths=localVendor;},function(){wasm.wasmPaths=cdn;}):Promise.resolve().then(function(){wasm.wasmPaths=ctx.source;})).then(local).catch(function(err){
-      /* A locally installed but incomplete/incompatible WASM folder may fail. */
-      if(wasm.wasmPaths===localVendor){wasm.wasmPaths=cdn;return local();}throw err;
-    });
+    return (ctx.local?egFetchLocal(localVendor+'ort-wasm-simd.wasm',false).then(function(){wasm.wasmPaths=localVendor;},function(){wasm.wasmPaths=cdn;}):Promise.resolve().then(function(){wasm.wasmPaths=ctx.source;})).then(primary);
   }
-  var work=Promise.resolve().then(function(){progress('準備本機 Whisper…',0.01);return getLibrary(0);}).then(load);
+  var work=Promise.resolve().then(function(){progress('準備語音模型…',.01);return getLibrary(0);}).then(load);
   egWhisper.loading=work.then(function(pipe){
-    egWhisper.pipe=pipe;egWhisper.ready=true;egWhisper.loading=null;progress('Whisper 已就緒',1);egWhisper.listeners=[];return pipe;
+    egWhisper.pipe=pipe;egWhisper.ready=true;egWhisper.loading=null;progress(egWhisper.label+' 已就緒',1);egWhisper.listeners=[];return pipe;
   },function(err){egWhisper.loading=null;egWhisper.ready=false;egWhisper.lastErr=err.message||'模型載入失敗';egWhisper.listeners=[];throw err;});
   return egWhisper.loading;
 }
+
+
 
 
 /* Keep model initialization and inference off the page's audio/UI thread. */
@@ -926,13 +883,13 @@ function egAsrWorkerFailed(message){
 }
 function egGetAsrWorker(){
   if(egAsrWorker)return egAsrWorker;
-  var state={pipe:null,loading:null,ready:false,lastErr:'',progress:0,modelRemote:'Xenova/whisper-tiny',listeners:[],pageUrl:location.href};
+  var state={pipe:null,loading:null,ready:false,lastErr:'',progress:0,modelRemote:'Xenova/whisper-base',listeners:[],pageUrl:location.href};
   var source='var window=self;var egWhisper='+JSON.stringify(state)+';\n'+
     egWithTimeout.toString()+'\n'+egImportWhisper.toString()+'\n'+egFetchLocal.toString()+'\n'+egEnsureWhisperLocal.toString()+'\n'+egToneMedian.toString()+'\n'+egAnalyseTone.toString()+'\n'+
     'self.onmessage=async function(ev){var m=ev.data;try{'+
     'if(m.op==="tone"){self.postMessage({type:"result",id:m.id,value:egAnalyseTone(m.audio,16000)});return;}'+
     'var pipe=await egEnsureWhisperLocal(function(msg,pct){self.postMessage({type:"progress",msg:msg,pct:pct});});'+
-    'if(m.op==="load"){self.postMessage({type:"result",id:m.id,value:true});return;}'+
+    'if(m.op==="load"){self.postMessage({type:"result",id:m.id,value:{loadedModel:egWhisper.loadedModel,lightweight:egWhisper.lightweight,label:egWhisper.label}});return;}'+
     'var result=await pipe(m.audio,m.opts);'+
     'self.postMessage({type:"result",id:m.id,value:result});'+
     '}catch(e){self.postMessage({type:"error",id:m.id,message:e.message||String(e)});}};';
@@ -963,11 +920,12 @@ function egEnsureWhisper(onProg){
   if(!window.Worker)return egEnsureWhisperLocal(onProg);
   if(onProg&&egWhisper.listeners.indexOf(onProg)<0)egWhisper.listeners.push(onProg);
   if(egWhisper.loading)return egWhisper.loading;
-  egWhisper.loading=egWorkerCall('load').then(function(){
+  egWhisper.loading=egWithTimeout(egWorkerCall('load'),240000,'語音模型載入').then(function(info){
+    egWhisper.loadedModel=info.loadedModel;egWhisper.lightweight=info.lightweight;egWhisper.label=info.label;
     egWhisper.pipe=function(audio,opts){return egWorkerCall('run',audio,opts);};
     egWhisper.ready=true;egWhisper.loading=null;egWhisper.backend='worker';
-    egWorkerProgress('Whisper 已就緒',1);egWhisper.listeners=[];return egWhisper.pipe;
-  },function(err){egWhisper.loading=null;egWhisper.lastErr=err.message;egWhisper.listeners=[];throw err;});
+    egWorkerProgress(egWhisper.label+' 已就緒',1);egWhisper.listeners=[];return egWhisper.pipe;
+  },function(err){if(err.code==='EG_TIMEOUT')egAsrWorkerFailed(err.message);egWhisper.loading=null;egWhisper.lastErr=err.message;egWhisper.listeners=[];throw err;});
   return egWhisper.loading;
 }
 
@@ -995,14 +953,15 @@ function egIsLatinOnlyToken(s){
 }
 
 
-function egRunWhisperOnce(pipe,audio,opts){
-  if(egWhisper.inference)return Promise.reject(new Error('上一段辨識仍在完成，請稍候再試。'));
-  var work=Promise.resolve().then(function(){return pipe(audio,opts);});
-  egWhisper.inference=work;
-  work.then(function(){if(egWhisper.inference===work)egWhisper.inference=null;},function(){if(egWhisper.inference===work)egWhisper.inference=null;});
+function egRunWhisperOnce(pipe,audio,opts,shouldRun){
+  var previous=egWhisper.inference||Promise.resolve();
+  var work=previous.catch(function(){}).then(function(){if(shouldRun&&!shouldRun())throw new Error('已取消辨識');return pipe(audio,opts);});
+  egWhisper.inference=work;work.then(function(){if(egWhisper.inference===work)egWhisper.inference=null;},function(){if(egWhisper.inference===work)egWhisper.inference=null;});
   return egWithTimeout(work,120000,'語音辨識').then(egWhisperExtractText);
 }
-function egTranscribeBlob(blob,onProg,promptText,pcm){
+
+
+function egTranscribeBlob(blob,onProg,promptText,pcm,shouldRun){
   /* Copy this session's audio before awaiting the model; later recordings cannot replace it. */
   return egAudioForWhisper(blob,promptText,pcm).then(function(audio){
     if(!audio.length)throw new Error('未收到錄音波形，請重新開咪。');
@@ -1011,9 +970,9 @@ function egTranscribeBlob(blob,onProg,promptText,pcm){
     var prepared=egPrepAudioForAsr(audio,onProg);
     return egWithTimeout(egEnsureWhisper(onProg),240000,'Whisper 模型載入').then(function(pipe){
       if(onProg)onProg('AI 辨識中…',0.6);
-      var opts={language:'zh',task:'transcribe',chunk_length_s:30,stride_length_s:5,return_timestamps:false,max_new_tokens:audio.length>160000?256:96};
+      var opts={language:'zh',task:'transcribe',chunk_length_s:30,stride_length_s:5,return_timestamps:false,max_new_tokens:448};
       /* Never feed the expected answer as a prompt or choose a pass by its score. */
-      return egRunWhisperOnce(pipe,prepared,opts).then(function(text){return egStripWhisperJunk(text);});
+      return egRunWhisperOnce(pipe,prepared,opts,shouldRun).then(function(text){return egStripWhisperJunk(text);});
     });
   });
 }
@@ -1033,131 +992,21 @@ function norm(s){
   return zhChars(s).join(' ');
 }
 function softNorm(s){return norm(s);}
-function egToneStripPy(s){
-  var map={'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'v','ǘ':'v','ǚ':'v','ǜ':'v','ü':'v'};
-  return String(s||'').toLowerCase().replace(/[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü]/g,function(c){return map[c]||c;}).replace(/[^a-z]/g,'');
-}
-function egLookupTargetPinyin(target){
-  var zh=zhChars(target||'').filter(function(c){return /[\u4e00-\u9fff]/.test(c);}).join('');
-  if(!zh)return [];
-  var out=[],seen={};
-  function add(py){
-    var n=egToneStripPy(py);if(!n||seen[n])return;seen[n]=1;out.push(n);
-  }
-  try{
-    if(typeof PINYIN!=='undefined'&&PINYIN.samples){
-      PINYIN.samples.forEach(function(s){if(s&&s.zh===zh&&s.py)add(s.py);});
-    }
-  }catch(e){}
-  try{
-    if(typeof TONE_SETS!=='undefined'){
-      TONE_SETS.forEach(function(g){(g.items||[]).forEach(function(c){if(c&&c.zh===zh&&c.py)add(c.py);});});
-    }
-  }catch(e){}
-  /* common single-syllable fallbacks for garden samples */
-  var FALL={'爸':'ba','波':'bo','不':'bu','白':'bai','一':'yi','二':'er','三':'san','四':'si','五':'wu','六':'liu','七':'qi','八':'ba','九':'jiu','十':'shi','媽':'ma','麻':'ma','馬':'ma','罵':'ma','湯':'tang','糖':'tang','躺':'tang','燙':'tang','書':'shu','熟':'shu','鼠':'shu','樹':'shu','方':'fang','房':'fang','訪':'fang','放':'fang','謝':'xie','对':'dui','對':'dui','起':'qi','请':'qing','請':'qing','问':'wen','問':'wen','北':'bei','京':'jing','早':'zao','上':'shang','再':'zai','见':'jian','見':'jian','没':'mei','沒':'mei','关':'guan','關':'guan','系':'xi','係':'xi','好':'hao','你':'ni','我':'wo','他':'ta','们':'men','們':'men','吃':'chi','茶':'cha','水':'shui','饭':'fan','飯':'fan','面':'mian','麵':'mian'};
-  if(FALL[zh])add(FALL[zh]);
-  return out;
-}
+function egToneStripPy(s){return String(s||'').toLowerCase().normalize('NFC').replace(/u:|[üǖǘǚǜ]/g,'v').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z]/g,'');}
+
+
+function egLookupTargetPinyin(target){var r=egShortReading(target);return r?[r.base]:[];}
+
+
 function egPinyinMatchesTarget(said,target){
-  var pyList=egLookupTargetPinyin(target);
-  if(!pyList.length)return false;
-  var heard=egToneStripPy(egStripWhisperJunk(said));
-  if(!heard)return false;
-  /* strip trailing tone digits if any survived */
-  heard=heard.replace(/[1-5]+$/g,'');
-  for(var i=0;i<pyList.length;i++){
-    var p=pyList[i];
-    if(heard===p)return true;
-  }
-  return false;
+  var reading=egShortReading(target),text=String(said||'').trim().normalize('NFC');if(!reading||!text||!/^[-\sa-zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜüńňǹ1-5]+$/i.test(text))return false;
+  return egToneStripPy(text)===reading.base&&egToneFromPinyin(text)===reading.tone;
 }
-function cleanZhHeard(said,target){
-  var raw=egStripWhisperJunk(said);
-  if(!raw)return '';
-  /* If Whisper returned pinyin/latin that matches target syllable → map to target chars */
-  if(egPinyinMatchesTarget(raw,target)){
-    var z=zhChars(target||'').filter(function(c){return /[\u4e00-\u9fff]/.test(c);}).join('');
-    if(z)return z;
-  }
-  /* Drop pure Latin hallucinations when target is Chinese */
-  var tZh=zhChars(target||'').filter(function(c){return /[\u4e00-\u9fff]/.test(c);});
-  if(tZh.length&&egIsLatinOnlyToken(raw)&&!egPinyinMatchesTarget(raw,target))return '';
-  var chars=zhChars(raw);
-  if(!chars.length)return '';
-  var tt=zhChars(target||'');
-  /* 1) collapse consecutive dups but RESPECT target runs (謝謝 keep 2; 波波波→波) */
-  var maxRun={};
-  for(var ri=0;ri<tt.length;ri++){
-    var c0=tt[ri],run=1;
-    while(ri+run<tt.length&&tt[ri+run]===c0)run++;
-    maxRun[c0]=Math.max(maxRun[c0]||0,run);
-    ri+=run-1;
-  }
-  var ded=[],di=0;
-  while(di<chars.length){
-    var ch=chars[di],runL=1;
-    while(di+runL<chars.length&&chars[di+runL]===ch)runL++;
-    var allow=maxRun[ch]||1;
-    var keep=Math.min(runL,allow);
-    for(var k=0;k<keep;k++)ded.push(ch);
-    di+=runL;
-  }
-  /* 2) collapse repeated blocks (bigrams..4): 你好你好 → 你好 — but not inside target phrase */
-  function collapseLoops(a){
-    var changed=true,guard=0;a=a.slice();
-    var tJoin=tt.join('');
-    while(changed&&guard++<10){changed=false;
-      for(var L=4;L>=1;L--){for(var i=0;i+2*L<=a.length;i++){var same=true;for(var k=0;k<L;k++){if(a[i+k]!==a[i+L+k]){same=false;break;}}if(same){
-        var block=a.slice(i,i+L).join('');
-        /* keep one copy of reduplicated greeting already in target once */
-        if(tJoin && tJoin.indexOf(block+block)>=0){ /* target itself has XX — only trim extras beyond 2L */ 
-          if(i+3*L<=a.length){var third=true;for(var k3=0;k3<L;k3++){if(a[i+2*L+k3]!==a[i+k3]){third=false;break;}}if(third){a.splice(i+2*L,L);changed=true;break;}}
-        }else{a.splice(i+L,L);changed=true;break;}
-      }}if(changed)break;}
-    }
-    return a;
-  }
-  ded=collapseLoops(ded);
-  /* 3) single-char / short target */
-  if(tt.length===1){
-    var only=true;for(var ci=0;ci<ded.length;ci++){if(ded[ci]!==tt[0]){only=false;break;}}
-    if(only&&ded.length)return tt[0];
-    if(ded.indexOf(tt[0])>=0&&ded.length<=3)return tt[0];
-    /* Latin leftovers already stripped; empty → '' */
-  }
-  if(tt.length&&ded.length){
-    if(ded.length>tt.length*2+2){
-      var setT={},hit=0;for(var x=0;x<tt.length;x++)setT[tt[x]]=true;
-      for(var y=0;y<ded.length;y++){if(setT[ded[y]])hit++;}
-      if(hit===0)return '';
-      var win=Math.min(ded.length,Math.max(tt.length,tt.length+1)),best='',bestHit=-1;
-      for(var start=0;start<=Math.max(0,ded.length-Math.min(win,ded.length));start++){
-        var slice=ded.slice(start,start+win),set={},h=0;
-        for(var si=0;si<slice.length;si++)set[slice[si]]=true;
-        for(var ti=0;ti<tt.length;ti++){if(set[tt[ti]])h++;}
-        var score=h-Math.abs(slice.length-tt.length)*0.2;
-        if(score>bestHit){bestHit=score;best=slice.join('');}
-      }
-      if(best&&bestHit>0)ded=zhChars(best);
-    }else if(ded.length>tt.length+2){
-      var setT2={},hit2=0;for(var x2=0;x2<tt.length;x2++)setT2[tt[x2]]=true;
-      for(var y2=0;y2<ded.length;y2++){if(setT2[ded[y2]])hit2++;}
-      if(hit2>0){
-        var win2=Math.min(ded.length,tt.length+2),best2='',bestHit2=-1;
-        for(var st2=0;st2<=Math.max(0,ded.length-Math.min(win2,ded.length));st2++){
-          var sl2=ded.slice(st2,st2+win2),set2={},h2=0;
-          for(var s2=0;s2<sl2.length;s2++)set2[sl2[s2]]=true;
-          for(var t2=0;t2<tt.length;t2++){if(set2[tt[t2]])h2++;}
-          var sc2=h2-Math.abs(sl2.length-tt.length)*0.15;
-          if(sc2>bestHit2){bestHit2=sc2;best2=sl2.join('');}
-        }
-        if(best2&&bestHit2>0)return best2;
-      }
-    }
-  }
-  return ded.join('');
-}
+
+
+function cleanZhHeard(said){return egStripWhisperJunk(said);}
+
+
 function cleanHeardText(said,target){return cleanZhHeard(said,target);}
 function egZhHomophoneEq(a,b){
   if(!a||!b)return false;
@@ -1199,103 +1048,15 @@ function egAnchorHits(target,said){
   }
   return {need:anchors.length,hit:hit,miss:miss};
 }
-function scoreZhChar(target,said){
-  /* ≤2 字專用：封鎖喔哦啊嗯等語氣幻聽；拼音 bu/bù 可過 */
-  var z=egHanTarget(target);
-  var soft={'喔':1,'哦':1,'噢':1,'啊':1,'呀':1,'嗯':1,'呃':1,'唔':1,'啦':1,'嘛':1,'哟':1,'耶':1,'欸':1,'诶':1,'誒':1};
-  var extracted=egExtractTargetChar(said,z||target);
-  var cleaned=extracted;
-  if(!cleaned)cleaned=cleanZhHeard(said,z||target);
-  if((!cleaned||!egHanTarget(cleaned)) && egPinyinMatchesTarget(said,z||target))cleaned=z;
-  var tChars=zhChars(z||target).filter(function(c){return /[\u4e00-\u9fff]/.test(c);}).map(egZhNormChar)
-  var sChars=zhChars(cleaned).filter(function(c){return /[\u4e00-\u9fff]/.test(c);}).map(egZhNormChar)
-  if(sChars.length && sChars.every(function(c){return !!soft[c];})){
-    var okSoft=tChars.length&&sChars.some(function(c){return tChars.indexOf(c)>=0;});
-    if(!okSoft){
-      if(egPinyinMatchesTarget(said,z||target))return {pct:100,pass:true,missing:[],said:z,cover:1,contentCover:1,farOff:false,mode:'char'};
-      return {pct:0,pass:false,missing:tChars.slice(),said:'',cover:0,contentCover:0,farOff:true,mode:'char',softHallucination:true};
-    }
-  }
-  if(!tChars.length)return {pct:0,pass:false,missing:[],said:cleaned||'',cover:0,contentCover:0,farOff:true,mode:'char'};
-  if(!sChars.length){
-    if(egPinyinMatchesTarget(said,z||target))return {pct:100,pass:true,missing:[],said:z,cover:1,contentCover:1,farOff:false,mode:'char'};
-    return {pct:0,pass:false,missing:tChars.slice(),said:'',cover:0,contentCover:0,farOff:true,mode:'char'};
-  }
-  if(tChars.length===1){
-    if(sChars.indexOf(tChars[0])>=0)return {pct:100,pass:true,missing:[],said:tChars[0],cover:1,contentCover:1,farOff:false,mode:'char'};
-    for(var i=0;i<sChars.length;i++){
-      if(egZhHomophoneEq(sChars[i],tChars[0]))return {pct:92,pass:true,missing:[],said:tChars[0],cover:1,contentCover:1,farOff:false,mode:'char'};
-    }
-    return {pct:0,pass:false,missing:tChars.slice(),said:sChars.join(''),cover:0,contentCover:0,farOff:true,mode:'char'};
-  }
-  /* 2-char */
-  if(sChars.join('')===tChars.join(''))return {pct:100,pass:true,missing:[],said:cleaned,cover:1,contentCover:1,farOff:false,mode:'char'};
-  var hit=0,missing=[];
-  for(var j=0;j<tChars.length;j++){
-    var ok=sChars.indexOf(tChars[j])>=0;
-    if(!ok){for(var k=0;k<sChars.length;k++){if(egZhHomophoneEq(sChars[k],tChars[j])){ok=true;break;}}}
-    if(ok)hit++;else missing.push(tChars[j]);
-  }
-  var cover=hit/tChars.length;
-  if(cover>=1)return {pct:100,pass:true,missing:[],said:cleaned,cover:1,contentCover:1,farOff:false,mode:'char'};
-  if(cover>=0.5)return {pct:Math.round(cover*80),pass:false,missing:missing,said:cleaned,cover:cover,contentCover:cover,farOff:false,mode:'char'};
-  return {pct:0,pass:false,missing:missing,said:cleaned,cover:cover,contentCover:cover,farOff:true,mode:'char'};
-}
-function scoreSpeechDetail(target,said){
-  if(egIsShortTarget(target))return scoreZhChar(target,said);
-  return scoreZhSentence(target,said);
-}
-function scoreZhSentence(target,said){
-  var cleaned=cleanZhHeard(said,target);
-  if((!cleaned||!zhChars(cleaned).length) && egPinyinMatchesTarget(said,target)){
-    cleaned=zhChars(target).filter(function(c){return /[\u4e00-\u9fff]/.test(c);}).join('')||cleaned;
-  }
-  var tChars=zhChars(target).filter(function(c){return /[\u4e00-\u9fffA-Za-z0-9]/.test(c);}).map(egZhNormChar)
-  var sChars=zhChars(cleaned).filter(function(c){return /[\u4e00-\u9fffA-Za-z0-9]/.test(c);}).map(egZhNormChar)
-  var softW={'的':1,'了':1,'呢':1,'吗':1,'嗎':1,'吧':1,'啊':1,'呀':1,'哦':1,'嗯':1,'啦':1,'嘛':1,'哟':1,'喔':1};
-  if(!tChars.length)return {pct:0,pass:false,missing:[],said:cleaned||'',cover:0,contentCover:0,farOff:true};
-  if(!sChars.length){
-    return {pct:0,pass:false,missing:tChars.slice(),said:cleaned||'',cover:0,contentCover:0,farOff:true};
-  }
-  if(tChars.length<=2){
-    return scoreZhChar(target,said);
-  }
-  var setS={};sChars.forEach(function(w){setS[w]=true;});
-  var hit=0,missing=[],contentTt=0,contentHit=0;
-  tChars.forEach(function(w){
-    var isSoft=!!softW[w];if(!isSoft)contentTt++;
-    var ok=!!setS[w];
-    if(!ok){for(var k in setS){if(setS[k]&&egZhHomophoneEq(k,w)){ok=true;break;}}}
-    if(ok){hit++;if(!isSoft)contentHit++;}
-    else if(isSoft){hit+=0.4;}
-    else missing.push(w);
-  });
-  var lcs=egLcsZh(tChars,sChars);
-  var cover=hit/tChars.length,order=lcs/tChars.length;
-  var contentCover=contentTt?(contentHit/contentTt):cover;
-  var pct=Math.round(Math.min(100,(cover*0.55+order*0.45)*100));
-  if(sChars.join('')===tChars.join(''))pct=100;
-  var anc=egAnchorHits(tChars.join(''),sChars.join(''));
-  if(anc.need){
-    var ar=anc.hit/anc.need;
-    if(ar<0.5){pct=Math.min(pct,18);contentCover=Math.min(contentCover,0.15);}
-    else if(ar<1){pct=Math.min(pct,Math.round(pct*0.85+10));}
-  }
-  /* Length mismatch with weak order → hallucination / rewrite */
-  if(sChars.length>=Math.max(3,Math.floor(tChars.length*0.5)) && order<0.45 && contentCover<0.55){
-    pct=Math.min(pct,15);
-  }
-  if(sChars.length>tChars.length*2+2&&contentCover<0.5){pct=Math.min(pct,8);}
-  var farOff=contentCover<0.35 || order<0.4 || (anc.need>0 && anc.hit/anc.need<0.5);
-  if(farOff){
-    /* Cap mild-looking scores — 「今天早上天面」 must not sit at ~38 */
-    pct=Math.min(pct,15);
-    if(contentHit<1.5||order<0.35)pct=Math.min(pct,10);
-    if(contentCover<0.2)pct=Math.min(pct,6);
-  }
-  var pass=!farOff&&(pct>=55||(cover>=0.7&&order>=0.55)||(cover>=0.6&&missing.length<=1&&order>=0.5));
-  return {pct:pct,pass:pass,missing:missing,said:cleaned,cover:cover,contentCover:contentCover,farOff:farOff,order:order,anchors:anc};
-}
+function scoreZhChar(target,said){return egScoreZhText(target,said);}
+
+
+function scoreSpeechDetail(target,said){return egScoreZhText(target,said);}
+
+
+function scoreZhSentence(target,said){return egScoreZhText(target,said);}
+
+
 function scoreSpeech(target,said){
   return scoreSpeechDetail(target,said);
 }
@@ -1497,20 +1258,20 @@ function mountSpeakPractice(host, target, opts){
   function tag(stateName,text){if(!alive())return;egSetAiReadyTag(readyTag,stateName,text);if(text)readyTag.textContent=text;}
   function setHint(){
     mode=getPracticeMode();
-    hint.textContent=mode==='fast'?'Google 普通話聽寫：需要網絡及瀏覽器語音服務。等「咪已開」先讀，讀完再撳停止。失敗會提示原因並轉用 Whisper。':'Whisper：咪開好後先讀；綠色音量條應有反應。首次需下載模型，錄音最長 40 秒。模型喺瀏覽器內運算；離線使用需備齊套件同模型。';
+    hint.textContent=mode==='fast'?'Google 普通話聽寫：需要網絡及瀏覽器語音服務。等「咪已開」先讀，讀完再撳停止。失敗會提示原因並轉用 Whisper。':'Whisper：咪開好後先讀；綠色音量條應有反應。首次約下載 80 MB，錄音最長 2 分鐘，會保留並辨識當次錄音。模型喺瀏覽器內運算；離線使用需備齊套件同模型。';
     root.querySelectorAll('[data-mode]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-mode')===mode);});
     meter.style.display=mode==='fast'?'none':'';
     if(mode==='fast')tag(egFastAvailable()?'loading':'fail',egFastAvailable()?'Google · 待開咪':'Google 暫不可用');
-    else if(egWhisper.ready)tag('ready','Whisper 已就緒');else tag('loading','Whisper 待載入');
+    else if(egWhisper.ready)tag('ready',(egWhisper.label||'Whisper')+' 已就緒');else tag('loading','Whisper 待載入');
   }
   function warmup(){
     var ticket=++modelTicket;
     if(mode!=='stable')return;
-    if(egWhisper.ready){tag('ready','Whisper 已就緒');return;}
+    if(egWhisper.ready){tag('ready',(egWhisper.label||'Whisper')+' 已就緒');return;}
     tag('loading','載入模型中…');
     egEnsureWhisper(function(msg,pct){if(alive()&&ticket===modelTicket&&getPracticeMode()==='stable')progress(msg,pct);}).then(function(){
       if(!alive()||ticket!==modelTicket||getPracticeMode()!=='stable')return;
-      tag('ready','Whisper 已就緒');if(phase!=='processing')hideProgress();
+      tag('ready',(egWhisper.label||'Whisper')+' 已就緒');if(phase!=='processing')hideProgress();
     }).catch(function(err){if(alive()&&ticket===modelTicket&&getPracticeMode()==='stable'){tag('fail','模型未就緒');progress(err.message,0,true);}});
   }
   function error(msg){
@@ -1528,7 +1289,7 @@ function mountSpeakPractice(host, target, opts){
     if(phase==='idle')status.textContent=sentence?'① 聽例句　② 撳咪讀完整句　③ 停止核對':'① 聽單字　② 撳咪讀「'+target+'」一次　③ 停止睇走勢';
   }
   root.querySelectorAll('[data-short-style]').forEach(function(button){bindTap(button,function(){
-    if(phase!=='idle')return;shortStyle=button.getAttribute('data-short-style');refreshShortPrompt();
+    if(phase!=='idle')return;serial++;shortStyle=button.getAttribute('data-short-style');refreshShortPrompt();
     result.innerHTML='';heardEl.textContent='';status.textContent=shortStyle==='sentence'?'請先聽例句，再撳咪跟讀。':'請先聽單字，再撳咪讀一次。';
   });});
   refreshShortPrompt();
@@ -1548,23 +1309,24 @@ function mountSpeakPractice(host, target, opts){
     result.innerHTML='<div><b>'+esc(title)+'</b></div><div class="muted">目標：'+esc(target+' '+shortReading.py)+'</div>'+
       '<div class="muted">聽寫文字：<b>'+esc(raw||'（未有可用文字）')+'</b></div>'+
       '<div class="muted">'+esc(baseText)+'</div><div class="muted">'+esc(toneText)+'</div>'+curve+
-      '<div class="muted">音高曲線只供練習參考；未能代替專業發音評測。'+(meta.asrError?' 文字辨識暫未就緒，錄音仍可播放。':'')+'</div>'+
+      '<div class="muted">音高曲線只供練習參考；未能代替專業發音評測。'+(meta.asrPending?' 文字模型載入中，會繼續辨識呢段錄音。':meta.asrError?' 文字辨識未完成：'+esc(meta.asrErrorMessage||'請稍後再試')+'。錄音仍可播放。':'')+'</div>'+
       '<div class="btn-row"><button class="btn ghost sm" type="button" data-act="short-sentence">用例句再核對</button><button class="btn sm" type="button" data-act="next2">下一題 →</button></div>';
-    bindTap(result.querySelector('[data-act=short-sentence]'),function(){shortStyle='sentence';refreshShortPrompt();result.innerHTML='';status.textContent='請先聽例句，再撳咪跟讀。';});
+    bindTap(result.querySelector('[data-act=short-sentence]'),function(){serial++;shortStyle='sentence';refreshShortPrompt();result.innerHTML='';status.textContent='請先聽例句，再撳咪跟讀。';});
     bindTap(result.querySelector('[data-act=next2]'),goNext);
-    heardEl.textContent='';status.textContent='單字練習完成 · 可播放「我把聲」比較，或改讀例句。';
+    heardEl.textContent='';status.textContent=meta.asrPending?'走勢參考已顯示 · 等模型就緒後繼續辨識同一段錄音。':'單字練習完成 · 可播放「我把聲」比較，或改讀例句。';
     if(feedback.kind==='supported')bumpProgress(1);
   }
   async function finishShortRecording(res,id){
-    var audio=await egAudioForWhisper(res.blob,target,res.pcm);
-    var tone;
+    var audio=await egAudioForWhisper(res.blob,target,res.pcm),tone;
     try{tone=window.Worker?await egWorkerCall('tone',audio):egAnalyseTone(audio,16000);}catch(e){tone=egAnalyseTone(audio,16000);}
     if(!current(id))return;
-    if(!egWhisper.ready){showShortFeedback('',{tone:tone,asrError:true});return;}
+    if(!egWhisper.ready)showShortFeedback('',{tone:tone,asrPending:true});
     try{
-      var text=await egTranscribeBlob(res.blob,function(msg,pct){if(current(id))progress(msg,pct);},target,res.pcm);
-      if(current(id))showShortFeedback(text,{tone:tone});
-    }catch(e){if(current(id))showShortFeedback('',{tone:tone,asrError:true});}
+      await egWithTimeout(egEnsureWhisper(function(msg,pct){if(current(id))progress(msg,pct);}),240000,'Whisper 模型載入');
+      if(!current(id))return;
+      var transcript=await egTranscribeBlob(res.blob,function(msg,pct){if(current(id))progress(msg,pct);},target,res.pcm,function(){return current(id);});
+      if(current(id))showShortFeedback(transcript,{tone:tone});
+    }catch(e){if(current(id))showShortFeedback('',{tone:tone,asrError:true,asrErrorMessage:e.message});}
   }
 
   function showScore(said,meta){
@@ -1577,11 +1339,13 @@ function mountSpeakPractice(host, target, opts){
       if(heardEl)heardEl.textContent='';return;
     }
     var r=scoreSpeechDetail(shortReading&&shortStyle==='sentence'?shortReading.sentence:target,raw),label=typed?'你輸入':'AI 聽到';
+    var focus=opts.focusWord||(shortReading&&shortStyle==='sentence'?target:'');if(focus&&egZhNormText(raw).indexOf(egZhNormText(focus))<0){r.pass=false;r.pct=Math.min(r.pct,39);r.critical=r.critical||'keyword';}
     var verdict=r.pass?(r.pct>=90?'✨ 文字核對正確':'✅ 文字核對過關'):'再聽示範試吓';
     result.classList.add('on');
     result.innerHTML='<div><b>'+esc(verdict)+'</b> · '+r.pct+' 分</div>'+
       '<div class="muted" style="margin-top:5px">'+label+'：<b style="color:var(--ink)">'+esc(raw)+'</b></div>'+
       '<div class="muted">按辨識文字核對；呢個分數未能準確評估聲調。</div>'+
+      (r.critical?'<div class="muted">'+(r.critical==='negation'?'否定詞有差異，請重聽或重錄確認。':r.critical==='number'?'數字有差異，請重聽或重錄確認。':'未核對到本題生字，請比較錄音同聽寫文字再試。')+'</div>':'')+
       (r.softHallucination?'<div class="muted">只辨識到語氣詞，未能核對目標字；短字可讀上面嘅完整提示句。</div>':'')+
       '<div class="btn-row"><button class="btn sm" type="button" data-act="next2">下一題 →</button></div>';
     bindTap(result.querySelector('[data-act=next2]'),goNext);
@@ -1593,7 +1357,7 @@ function mountSpeakPractice(host, target, opts){
     if(!current(id)||phase!=='opening')return;
     t0=performance.now();state('recording');
     status.textContent='咪已開 · '+(shortReading?'請讀「'+(shortStyle==='single'?target:shortReading.sentence)+'」':shortTarget?'請讀「'+carrierLine+'」':'請讀目標句')+'，讀完撳停止';
-    limitTimer=setTimeout(function(){if(current(id)&&phase==='recording'){status.textContent='已錄 40 秒，自動停止…';stop();}},40000);
+    limitTimer=setTimeout(function(){if(current(id)&&phase==='recording'){status.textContent='已錄 2 分鐘，自動停止…';stop();}},120000);
   }
   function fallback(reason){
     if(!alive())return;
@@ -1637,8 +1401,8 @@ function mountSpeakPractice(host, target, opts){
       state('processing');
       if(shortReading&&shortStyle==='single'){status.textContent='分析音節與聲調走勢…';return finishShortRecording(res,id);}
       status.textContent=egWhisper.ready?'AI 辨識中…':'錄音已保存，等候 Whisper 模型…';
-      return egTranscribeBlob(res.blob,function(msg,pct){if(current(id))progress(msg,pct);},target,res.pcm).then(function(text){
-        if(current(id)){tag('ready','Whisper 已就緒');showScore(text,{via:'whisper'});}
+      return egTranscribeBlob(res.blob,function(msg,pct){if(current(id))progress(msg,pct);},target,res.pcm,function(){return current(id);}).then(function(text){
+        if(current(id)){tag('ready',(egWhisper.label||'Whisper')+' 已就緒');showScore(text,{via:'whisper'});}
       });
     }).catch(function(err){if(current(id)){hideProgress();error(err.message||'辨識失敗');}});
   }
@@ -1657,11 +1421,11 @@ function mountSpeakPractice(host, target, opts){
   var observer=new MutationObserver(function(){if(!root.isConnected){if(egPracticeCleanup===cleanup)egPracticeCleanup=null;cleanup();}});
   observer.observe(document.getElementById('mod-body'),{childList:true,subtree:true});
   egPracticeCleanup=cleanup;document.addEventListener('visibilitychange',visibility);window.addEventListener('pagehide',pagehide);
-  root.querySelectorAll('[data-mode]').forEach(function(b){bindTap(b,function(){if(phase!=='idle')return;modelTicket++;setPracticeMode(b.getAttribute('data-mode'));hideProgress();setHint();warmup();});});
+  root.querySelectorAll('[data-mode]').forEach(function(b){bindTap(b,function(){if(phase!=='idle')return;serial++;modelTicket++;setPracticeMode(b.getAttribute('data-mode'));hideProgress();setHint();warmup();});});
   bindTap(demoBtn,function(){if(phase==='idle')speak(shortReading?(shortStyle==='single'?target:shortReading.sentence):(shortTarget?carrierLine:target));});
   bindTap(btnMine,function(){if(phase==='idle')egPlayMine();});
   bindTap(root.querySelector('[data-act=next]'),goNext);
-  bindTap(typeBtn,function(){var text=typeInput.value.trim();if(text)showScore(text,{via:'type'});else toast('請先打字');});
+  bindTap(typeBtn,function(){var text=typeInput.value.trim();if(text){serial++;showScore(text,{via:'type'});}else toast('請先打字');});
   bindTap(micBtn,function(){if(phase==='recording')stop();else begin();});
   state('idle');setHint();
   if(window.isSecureContext===false)status.textContent=egMicError();
@@ -1909,7 +1673,7 @@ function renderPinyin(body){
     var sent=practiceText(it);
     fillTtsPlayer(sent);
     mountSpeakPractice(document.getElementById('py-speak'),sent,{
-      label:'拼音跟讀 · '+it.zh+'（'+(curIdx%curList.length+1)+'/'+curList.length+'）· 目標例句',
+      focusWord:it.zh,label:'拼音跟讀 · '+it.zh+'（'+(curIdx%curList.length+1)+'/'+curList.length+'）· 目標例句',
       onNext:function(){
         curIdx=(curIdx+1)%curList.length;
         speak(practiceText(curList[curIdx]));
