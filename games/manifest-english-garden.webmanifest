@@ -1,0 +1,15 @@
+{
+  "name": "我的英語學習樂園",
+  "short_name": "英語樂園",
+  "description": "單字、聽力、情境、發音、新聞 — 東湧零售適用",
+  "start_url": "./english-garden.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e8f5e9",
+  "theme_color": "#e8f5e9",
+  "lang": "zh-Hant",
+  "icons": [
+    {"src": "./eg-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "./eg-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}

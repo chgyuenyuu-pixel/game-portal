@@ -1,0 +1,11 @@
+{
+  "name": "普通話花園",
+  "short_name": "普通話花園",
+  "description": "Mandarin Garden — 拼音、聲調、聽力、對話練習",
+  "start_url": "./mandarin-garden.html",
+  "display": "standalone",
+  "background_color": "#fff7f9",
+  "theme_color": "#f9c5d1",
+  "lang": "zh-HK",
+  "icons": []
+}
