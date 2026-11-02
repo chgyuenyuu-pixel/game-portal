@@ -1,5 +1,5 @@
 /* Mandarin Garden: network-first page updates, persistent speech/model caches. */
-var EG_SW_VERSION='home-v1-20261102w-voice-fix3';
+var EG_SW_VERSION='home-v1-20261102w-voice-fix4-scenario';
 var SHELL_CACHE='mg-shell-'+EG_SW_VERSION,AUDIO_CACHE='mg-audio-v1',AI_CACHE='mg-ai-v5';
 var SHELL_URLS=['./english-garden.html','./manifest-english-garden.webmanifest','./eg-icon-192.png','./eg-icon-512.png','./mandarin-garden.html','./manifest-mandarin-garden.webmanifest','../cloud-save.js'];
 function absolute(path){return new URL(path,self.location.href).href;}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="mg-build" content="home-v1-20261102w-voice-fix3">
+<meta name="mg-build" content="home-v1-20261102w-voice-fix4-scenario">
 <meta name="theme-color" content="#f9c5d1">
 <title>普通話花園 · Mandarin Garden</title>
 <link rel="manifest" href="manifest-mandarin-garden.webmanifest">
@@ -203,7 +203,7 @@ body{padding:12px 14px 40px;max-width:520px;margin:0 auto}
 
 <script>
 /* ===== BUILD / SW ===== */
-var MG_BUILD='home-v1-20261102w-voice-fix3';
+var MG_BUILD='home-v1-20261102w-voice-fix4-scenario';
 document.getElementById('build-pill').textContent=MG_BUILD;
 /* Keep downloaded models across builds. The existing site owns its service worker. */
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
@@ -233,12 +233,12 @@ function ttsUrl(text){return ttsUrls(text)[0]||'';}
 var _egSpeakGen=0,_egSpeakTimers=[],_egAudioTaskCancel=null,_egSynthCancel=null,_egVoicesCleanup=null,_egUtterance=null;
 var _egLastSpeakAt=0,_egLastSpeakText='';
 function egClearSpeakTimers(){_egSpeakTimers.forEach(clearTimeout);_egSpeakTimers=[];}
-function egStopSpeech(){
+function egStopSpeech(keepAudio){
   _egSpeakGen++;egClearSpeakTimers();
   if(_egVoicesCleanup){_egVoicesCleanup();_egVoicesCleanup=null;}
   if(_egAudioTaskCancel){var cancel=_egAudioTaskCancel;_egAudioTaskCancel=null;cancel();}
   if(_egSynthCancel){var synthCancel=_egSynthCancel;_egSynthCancel=null;synthCancel();}
-  ['tts-audio','eg-global-tts','mine-audio'].forEach(function(id){var a=document.getElementById(id);if(a){a.pause();a.onended=null;a.onerror=null;a.onplaying=null;a._egManaged=false;}});
+  ['tts-audio','eg-global-tts','mine-audio','mg-recorded-audio'].forEach(function(id){var a=document.getElementById(id);if(a&&a!==keepAudio){a.pause();a.onended=null;a.onerror=null;a.onplaying=null;a._egManaged=false;}});
   [window._egAudio,window._egMine].forEach(function(a){try{if(a)a.pause();}catch(e){}});
   try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
   _egUtterance=null;return _egSpeakGen;
@@ -671,7 +671,7 @@ function egShortReading(target){var map=egReadingMap(),text=String(target||'').t
 function egNormalizeShortNumbers(text){
   var s=String(text||'').normalize('NFKC');
   s=s.replace(/(\d+(?:\.\d+)?)%/g,'百分之$1').replace(/\b(\d{1,2}):(\d{2})\b/g,function(_,h,m){return egZhNumber(h)+'點'+(m==='30'?'半':m==='00'?'':egZhNumber(m)+'分');});
-  return s.replace(/\d+(?:\.\d+)?/g,function(n){var parts=n.split('.');return egZhNumber(parts[0])+(parts[1]?'點'+parts[1].split('').map(function(d){return egZhNumber(d);}).join(''):'');});
+  return s.replace(/\d+(?:\.\d+)?/g,function(n){var parts=n.split('.');return egZhNumber(parts[0])+(parts[1]?'點'+parts[1].split('').map(function(d){return egZhNumber(d);}).join(''):'');}).replace(/[两兩](?=(?:小时|小時|[个個位碗杯份张張瓶斤条條本件人辆輛包块塊双雙盒间間天年]))/g,'二');
 }
 
 
@@ -941,12 +941,27 @@ function egWhisperSpecialTokenRe(){
   return /\b(?:\[?(?:BOS|EOS|PAD|UNK|SOS|CLS|SEP|MASK)\]?|<\|?(?:startoftranscript|endoftranscript|notimestamps|nospeech|transcribe|translate)\|?>)\b/gi;
 }
 function egStripWhisperJunk(text){
-  var t=String(text||'');
-  t=t.replace(egWhisperSpecialTokenRe(),' ');
-  t=t.replace(/[<>|]/g,' ');
-  t=t.replace(/\s+/g,' ').trim();
-  return t;
+  return String(text||'').normalize('NFC').replace(/<\|[^<>]*\|>/g,' ').replace(/<\/?(?:s|pad|unk)>/gi,' ')
+    .replace(/\[(?:BOS|EOS|PAD|UNK|SOS|CLS|SEP|MASK|BLANK_AUDIO|NO_SPEECH)\]/gi,' ')
+    .replace(/\b(?:BOS|EOS|PAD|UNK|SOS|CLS|SEP|MASK)\b/g,' ')
+    .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f\u200b-\u200f\u202a-\u202e\u2060\ufeff]/g,'').replace(/\s+/g,' ').trim();
 }
+function egCheckZhTranscript(raw,allowSyllable){
+  var text=egStripWhisperJunk(raw),han=(text.match(/[\u3400-\u9fff]/g)||[]).length,latin=(text.match(/[a-z]/gi)||[]).length,foreign=(text.match(/[\u3040-\u30ff\u0400-\u052f\u0600-\u06ff\uac00-\ud7af]/g)||[]).length;
+  function bad(reason){return {ok:false,text:text,reason:reason};}
+  if(!text)return bad('AI 未回傳文字，今次未評分。可重播確認收音，再重新辨識同一段錄音。');
+  if(/[\ufffd\ud800-\udfff]/u.test(text))return bad('辨識結果含無效字元，今次未評分。請重新辨識呢段錄音。');
+  if(/^(?:字幕(?:由|提供|制[作做]|製[作做])|(?:感谢|感謝|谢谢|謝謝)(?:大家)?(?:收看|观看|觀看)|(?:请|請).*(?:订阅|訂閱).*(?:转发|轉發)|amara\.org)/i.test(text))return bad('AI 回傳咗疑似字幕或背景內容，今次未評分。請先重播錄音確認收音。');
+  if(!han&&!/[0-9]/.test(text)){
+    if(allowSyllable&&/^[a-zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜüńňǹ1-5]+$/i.test(text)&&egReadingMap().bases[egToneStripPy(text)])return {ok:true,text:text};
+    return bad('未辨識到可核對嘅普通話文字，今次未評分。可重播錄音，再重新辨識。');
+  }
+  if(latin>Math.max(10,han*2))return bad('辨識文字夾雜大量無效內容，今次未評分。請重新辨識呢段錄音。');
+  if(foreign>=3&&foreign>han)return bad('辨識結果主要係其他語言，今次未評分。請重播錄音後重試辨識。');
+  if(text.length>32&&/(.{2,20})\1{4,}/u.test(text.replace(/[\s，。！？,.!?]/g,'')))return bad('AI 回傳大量重複內容，今次未評分。請重播錄音後重試辨識。');
+  return {ok:true,text:text};
+}
+
 function egIsLatinOnlyToken(s){
   var x=String(s||'').replace(/\s+/g,'');
   return !!x && /^[A-Za-z'.\-]+$/.test(x);
@@ -972,7 +987,7 @@ function egTranscribeBlob(blob,onProg,promptText,pcm,shouldRun){
       if(onProg)onProg('AI 辨識中…',0.6);
       var opts={language:'zh',task:'transcribe',chunk_length_s:30,stride_length_s:5,return_timestamps:false,max_new_tokens:448};
       /* Never feed the expected answer as a prompt or choose a pass by its score. */
-      return egRunWhisperOnce(pipe,prepared,opts,shouldRun).then(function(text){return egStripWhisperJunk(text);});
+      return egRunWhisperOnce(pipe,prepared,opts,shouldRun).then(function(text){var checked=egCheckZhTranscript(text,!!egShortReading(promptText));if(!checked.ok){var err=new Error(checked.reason);err.code='EG_INVALID_TRANSCRIPT';throw err;}return checked.text;});
     });
   });
 }
@@ -1156,15 +1171,15 @@ function mountSpeakPractice(host, target, opts){
   if(!host)return;
   egCancelPractice();
   var shortReading=egShortReading(target);
-  function getPracticeMode(){return shortReading?egShortEngineMode:egGetAiMode();}
-  function setPracticeMode(m){if(shortReading)egShortEngineMode=m;else egSetAiMode(m);return m;}
+  function getPracticeMode(){return opts.getMode?opts.getMode():shortReading?egShortEngineMode:egGetAiMode();}
+  function setPracticeMode(m){if(opts.setMode)opts.setMode(m);else if(shortReading)egShortEngineMode=m;else egSetAiMode(m);return m;}
   var mode=getPracticeMode();
   var label=opts.label||'跟讀練習';
   try{
     host.classList.add('speak-dock','speak-dock-anchor');
     host.classList.remove('speak-dock-collapsed');
   }catch(e){}
-  var shortTarget=egIsShortTarget(target);
+  var shortTarget=!!shortReading;
   var carrierLine=shortTarget?egZhCarrierLine(target):'';
   /* home-v1-20261102p: sticky dock — scroll collapses only; no height scrollBy */
   host.innerHTML=
@@ -1226,10 +1241,16 @@ function mountSpeakPractice(host, target, opts){
   var typeBtn=root.querySelector('[data-act=typecheck]'),typeInput=root.querySelector('[data-typein]');
   var prog=root.querySelector('#whisper-prog'),meter=root.querySelector('.meter');
   var phase='idle',activeMode='',serial=0,disposed=false,limitTimer=null,modelTicket=0;
+  var lastRecording=null,replayBox=document.createElement('div');replayBox.hidden=true;
+  replayBox.innerHTML='<div class="muted" style="margin-top:8px">當次錄音已保存 · 可以先聽返，唔使等 AI</div><audio id="mg-recorded-audio" data-recorded-audio controls playsinline style="width:100%;height:40px"></audio><button class="btn ghost sm" type="button" data-act="retry-asr">用 Whisper 重新辨識呢段錄音</button>';
+  typeInput.parentNode.parentNode.insertBefore(replayBox,typeInput.parentNode);
+  var recordedAudio=replayBox.querySelector('audio'),retryButton=replayBox.querySelector('[data-act=retry-asr]');
+  recordedAudio.addEventListener('play',function(){if(phase==='opening'||phase==='recording'||phase==='stopping'){recordedAudio.pause();return;}egStopSpeech(recordedAudio);});
+
   function alive(){return !disposed&&root.isConnected;}
   function current(id){return alive()&&id===serial;}
   function state(next){
-    phase=next;recording=next==='recording';dockBusy=next!=='idle';egPracticeBusy=dockBusy;
+    phase=next;recording=next==='recording';dockBusy=next!=='idle';egPracticeBusy=dockBusy;if(retryButton)retryButton.disabled=next!=='idle'||!lastRecording;
     micBtn.disabled=next!=='idle'&&next!=='recording';
     micBtn.textContent=next==='recording'?'⏹ 停止並核對':next==='opening'?'開咪中…':next==='stopping'?'完成錄音中…':next==='processing'?'AI 辨識中…':'🎤 開始練習';
     root.querySelectorAll('[data-mode]').forEach(function(b){b.disabled=dockBusy;});
@@ -1332,6 +1353,7 @@ function mountSpeakPractice(host, target, opts){
   function showScore(said,meta){
     if(!alive())return;meta=meta||{};clearTimeout(limitTimer);state('idle');setDockCollapsed(false);hideProgress();
     var raw=egStripWhisperJunk(said),typed=meta.via==='type';
+    if(!typed){var checked=egCheckZhTranscript(said,!!shortReading);if(!checked.ok){error(checked.reason);return;}raw=checked.text;}
     if(shortReading&&shortStyle==='single'&&!typed){showShortFeedback(raw,meta);return;}
     if(!zhChars(raw).length){
       error('未辨識到可核對文字，今次未評分。');
@@ -1339,7 +1361,7 @@ function mountSpeakPractice(host, target, opts){
       if(heardEl)heardEl.textContent='';return;
     }
     var r=scoreSpeechDetail(shortReading&&shortStyle==='sentence'?shortReading.sentence:target,raw),label=typed?'你輸入':'AI 聽到';
-    var focus=opts.focusWord||(shortReading&&shortStyle==='sentence'?target:'');if(focus&&egZhNormText(raw).indexOf(egZhNormText(focus))<0){r.pass=false;r.pct=Math.min(r.pct,39);r.critical=r.critical||'keyword';}
+    var focus=opts.focusWord||(shortReading&&shortStyle==='sentence'?target:'');if(focus&&egZhNormText(egNormalizeShortNumbers(raw)).indexOf(egZhNormText(egNormalizeShortNumbers(focus)))<0){r.pass=false;r.pct=Math.min(r.pct,39);r.critical=r.critical||'keyword';}
     var verdict=r.pass?(r.pct>=90?'✨ 文字核對正確':'✅ 文字核對過關'):'再聽示範試吓';
     result.classList.add('on');
     result.innerHTML='<div><b>'+esc(verdict)+'</b> · '+r.pct+' 分</div>'+
@@ -1369,7 +1391,7 @@ function mountSpeakPractice(host, target, opts){
     }else{tag('fail','開咪失敗');error(message);}
   }
   function begin(){
-    if(phase!=='idle')return;setDockCollapsed(false);egStopSpeech();egClearRec();
+    if(phase!=='idle')return;setDockCollapsed(false);egStopSpeech();lastRecording=null;replayBox.hidden=true;recordedAudio.removeAttribute('src');egClearRec();
     var id=++serial;activeMode=getPracticeMode();result.classList.remove('on');result.innerHTML='';heardEl.textContent='';
     var level=root.querySelector('[data-level]');level.style.transform='scaleX(0)';
     if(window.isSecureContext===false){error(egMicError());return;}
@@ -1398,16 +1420,25 @@ function mountSpeakPractice(host, target, opts){
       if(!current(id))return;
       if(!res.blob||res.blob.size<100)throw new Error('錄音未收到資料，請重新開咪。');
       if(res.pcm&&res.samples/res.pcm.rate<0.18)throw new Error('錄音太短，請等咪開好再讀完整提示句。');
-      state('processing');
-      if(shortReading&&shortStyle==='single'){status.textContent='分析音節與聲調走勢…';return finishShortRecording(res,id);}
-      status.textContent=egWhisper.ready?'AI 辨識中…':'錄音已保存，等候 Whisper 模型…';
-      return egTranscribeBlob(res.blob,function(msg,pct){if(current(id))progress(msg,pct);},target,res.pcm,function(){return current(id);}).then(function(text){
-        if(current(id)){tag('ready',(egWhisper.label||'Whisper')+' 已就緒');showScore(text,{via:'whisper'});}
-      });
+      lastRecording=res;recordedAudio.src=egRec.url;replayBox.hidden=false;
+      return transcribeRecording(res,id);
     }).catch(function(err){if(current(id)){hideProgress();error(err.message||'辨識失敗');}});
   }
+  function transcribeRecording(res,id){
+    state('processing');
+    if(shortReading&&shortStyle==='single'){status.textContent='錄音已保存 · 分析音節與聲調走勢…';return finishShortRecording(res,id);}
+    status.textContent=egWhisper.ready?'錄音已保存 · AI 辨識中…':'錄音已保存 · 等模型載入後繼續辨識，可先重播錄音。';
+    return egTranscribeBlob(res.blob,function(msg,pct){if(current(id))progress(msg,pct);},target,res.pcm,function(){return current(id);}).then(function(text){
+      if(current(id)){tag('ready',(egWhisper.label||'Whisper')+' 已就緒');showScore(text,{via:'whisper'});}
+    });
+  }
+  bindTap(retryButton,function(){
+    if(phase!=='idle'||!lastRecording)return;var id=++serial;egStopSpeech();setPracticeMode('stable');setHint();
+    result.innerHTML='';heardEl.textContent='';
+    transcribeRecording(lastRecording,id).catch(function(err){if(current(id))error(err.message||'辨識未完成');});
+  });
   function cleanup(){
-    if(disposed)return;disposed=true;egPracticeBusy=false;serial++;modelTicket++;clearTimeout(limitTimer);clearTimeout(progressTimer);observer.disconnect();
+    if(disposed)return;disposed=true;recordedAudio.pause();lastRecording=null;egPracticeBusy=false;serial++;modelTicket++;clearTimeout(limitTimer);clearTimeout(progressTimer);observer.disconnect();
     window.removeEventListener('scroll',host._mgDockScroll);document.removeEventListener('visibilitychange',visibility);window.removeEventListener('pagehide',pagehide);
     if(host._mgDockRaf)cancelAnimationFrame(host._mgDockRaf);
     egStopRecognizeHard();egClearRec();
@@ -1901,110 +1932,104 @@ function egDialogGlobalIndex(cat,idx){
   }
   return n+idx;
 }
+function egDialogPracticeLines(sc){
+  if(!sc)return [];
+  var lines=(sc.lines||[]).map(function(line){return String(line.zh||'').trim();}).filter(Boolean);
+  var practice=sc.practice&&sc.practice.length?sc.practice:lines;
+  return practice.map(function(value){
+    var raw=String(value||'').trim(),norm=egZhNormText(raw);
+    var exact=lines.filter(function(line){return egZhNormText(line)===norm;});if(exact.length)return exact[0];
+    var matches=lines.filter(function(line){return norm&&egZhNormText(line).indexOf(norm)>=0;});
+    return matches.length===1?matches[0]:raw;
+  }).filter(Boolean);
+}
+function egDialogContextLine(text){
+  var key=egZhNormText(text),map={'两位':'我们一共两位。','要微辣':'我要微辣的。','谢谢':'谢谢您的帮助。','好的':'好的，我明白了。'};
+  return map[key]||String(text||'');
+}
 function renderDialog(body){
-  var cats=Object.keys(DIALOGS);
-  var cat=cats[0];
-  var scIdx=0;
-  var pracIdx=0;
-  var total=egDialogTotal();
-  body.innerHTML='<p class="hint">飲食／地方文化為主，共 <b>'+total+'</b> 關情景。揀分類 → 睇對白 → AI 跟讀練習句。</p>'+
+  var cats=Object.keys(DIALOGS),cat=cats[0],scIdx=0,pracIdx=0,total=egDialogTotal(),engine='stable';
+  var selected='',useContext=true;
+  body.innerHTML='<p class="hint">共 <b>'+total+'</b> 關情景。請讀藍色框嘅完整目標句；錄音會先保存，再核對文字。</p>'+
     '<div class="chips" id="dlg-tabs"></div>'+
-    '<label class="muted" style="display:flex;align-items:center;gap:8px;margin:8px 0">'+
-    '<input type="checkbox" id="dlg-py" '+(showPinyin?'checked':'')+'> 顯示拼音</label>'+
+    '<label class="muted" style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="dlg-py" '+(showPinyin?'checked':'')+'> 顯示拼音</label>'+
     '<div id="dlg-prog" class="muted" style="margin:4px 0 8px;font-weight:700;color:var(--rose)"></div>'+
     '<div id="dlg-scene" class="dialog-line" style="background:#fff8fb"></div>'+
+    '<div id="dlg-context" class="dialog-line" hidden></div>'+
     '<div id="dlg-speak" class="speak-dock-anchor"></div>'+
     '<button class="btn sm" type="button" id="dlg-next" style="margin-bottom:8px;background:linear-gradient(180deg,#ffb4c8,#f07a9a)">下一關 →</button>'+
     '<div id="dlg-list"></div>';
-  var tabs=document.getElementById('dlg-tabs');
-  cats.forEach(function(c,i){
-    var n=egScenariosByCat(c).length;
-    var b=document.createElement('button');b.type='button';b.className='chip'+(i===0?' on':'');b.textContent=c+' · '+n;
-    bindTap(b,function(){tabs.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});b.classList.add('on');cat=c;scIdx=0;pracIdx=0;draw();});
-    tabs.appendChild(b);
-  });
-  document.getElementById('dlg-py').onchange=function(){showPinyin=!!this.checked;draw();};
+  var tabs=body.querySelector('#dlg-tabs'),picker=null;
   function curList(){return egScenariosByCat(cat);}
-  function curSc(){var L=curList();return L[scIdx%Math.max(1,L.length)];}
-  function practiceList(sc){
-    if(!sc)return [];
-    if(sc.practice && sc.practice.length)return sc.practice.slice();
-    if(sc.lines && sc.lines.length){
-      return sc.lines.filter(function(l){return l.who==='你';}).map(function(l){return l.zh;});
-    }
-    return sc.zh?[sc.zh]:[];
-  }
+  function curSc(){return curList()[scIdx%Math.max(1,curList().length)];}
+  function practiceList(){return egDialogPracticeLines(curSc());}
   function setProg(){
     var sc=curSc();if(!sc)return;
-    var g=(typeof sc.id==='number'?sc.id:egDialogGlobalIndex(cat,scIdx)+1);
-    var el=document.getElementById('dlg-prog');
-    var ps=practiceList(sc);
-    if(el)el.textContent='第 '+g+' / '+total+' 關 · '+cat+' · '+(sc.region||'')+'（練習 '+(pracIdx+1)+'/'+Math.max(1,ps.length)+'）';
+    var ps=practiceList(),at=ps.indexOf(selected);
+    body.querySelector('#dlg-prog').textContent='第 '+(sc.id||egDialogGlobalIndex(cat,scIdx)+1)+' / '+total+' 關 · '+cat+' · '+(sc.region||'')+(at>=0?'（練習 '+(at+1)+'/'+ps.length+'）':'（自選對白）');
+  }
+  function markSelected(){
+    body.querySelectorAll('#dlg-list [data-dialog-line]').forEach(function(el){
+      var on=egZhNormText(el.getAttribute('data-dialog-line'))===egZhNormText(selected);
+      el.style.borderColor=on?'#4a8fe8':'';el.style.background=on?'#f0f7ff':'';
+      var button=el.querySelector('[data-a=practice]');button.setAttribute('aria-pressed',String(on));button.textContent=on?'✓ 呢句練習中':'🎤 AI 練習';
+    });
+  }
+  function nextPractice(){
+    var ps=practiceList(),index=ps.indexOf(selected);
+    if(index>=0&&index+1<ps.length){pracIdx=index+1;selected=ps[pracIdx];useContext=true;mountPractice();}
+    else nextScene();
   }
   function mountPractice(){
-    var sc=curSc();if(!sc)return;
-    var ps=practiceList(sc);
-    if(!ps.length)ps=[''];
-    pracIdx=pracIdx%ps.length;
-    var zh=ps[pracIdx];
-    setProg();
-    fillTtsPlayer(zh);
-    mountSpeakPractice(document.getElementById('dlg-speak'),zh,{
-      label:'第 '+(sc.id||egDialogGlobalIndex(cat,scIdx)+1)+' 關 · '+(sc.title||sc.who||'')+' · 練習',
-      onNext:function(){
-        if(pracIdx+1<ps.length){pracIdx++;speak(ps[pracIdx]);mountPractice();}
-        else {scIdx=(scIdx+1)%curList().length;pracIdx=0;var nps=practiceList(curSc());speak(nps[0]||'');draw();}
-      }
+    var sc=curSc();if(!sc)return;var ps=practiceList();
+    if(!selected)selected=ps[pracIdx%Math.max(1,ps.length)]||'';
+    var expanded=egDialogContextLine(selected),hasContext=expanded!==selected;
+    var target=hasContext&&useContext?expanded:selected,context=body.querySelector('#dlg-context');
+    context.hidden=!hasContext;
+    if(hasContext){
+      context.innerHTML='<div class="muted">短句較易誤認，可用完整句核對。原對白：'+esc(selected)+'</div><div class="chips" style="margin-top:6px"><button type="button" class="chip '+(!useContext?'on':'')+'" data-context="original">讀原對白</button><button type="button" class="chip '+(useContext?'on':'')+'" data-context="full">讀完整句</button></div>';
+      context.querySelectorAll('[data-context]').forEach(function(button){bindTap(button,function(){useContext=button.getAttribute('data-context')==='full';mountPractice();});});
+    }
+    setProg();markSelected();
+    mountSpeakPractice(body.querySelector('#dlg-speak'),target,{
+      label:'第 '+(sc.id||'')+' 關 · '+(sc.title||sc.who||'')+' · '+(hasContext&&useContext?'完整句核對':'對白跟讀'),
+      getMode:function(){return engine;},setMode:function(value){engine=value;},
+      focusWord:hasContext&&useContext?selected:'',onNext:nextPractice
     });
+    fillTtsPlayer(target);
+  }
+  function nextScene(){
+    egStopSpeech();scIdx=(scIdx+1)%Math.max(1,curList().length);pracIdx=0;selected='';useContext=true;draw();
   }
   function draw(){
-    var list=document.getElementById('dlg-list');list.innerHTML='';
-    var sc=curSc();
-    var sceneEl=document.getElementById('dlg-scene');
-    if(sc && sceneEl){
-      sceneEl.innerHTML='<div class="who">'+esc(sc.title||sc.who||'')+' · '+esc(sc.region||'')+'</div>'+
-        '<div style="margin:4px 0">'+esc(sc.scene||'')+'</div>'+
-        (sc.notes?'<div class="muted" style="font-size:.78rem;margin-top:4px">'+esc(sc.notes)+'</div>':'');
-    }
-    var lines=(sc && sc.lines)?sc.lines:[(sc||{})];
-    lines.forEach(function(line,i){
-      var div=document.createElement('div');div.className='dialog-line';
+    egStopSpeech();var list=body.querySelector('#dlg-list');list.innerHTML='';var sc=curSc();
+    var scene=body.querySelector('#dlg-scene');scene.innerHTML=sc?'<div class="who">'+esc(sc.title||sc.who||'')+' · '+esc(sc.region||'')+'</div><div style="margin:4px 0">'+esc(sc.scene||'')+'</div>'+(sc.notes?'<div class="muted">'+esc(sc.notes)+'</div>':''):'';
+    ((sc&&sc.lines)||[]).forEach(function(line){
+      var div=document.createElement('div');div.className='dialog-line';div.setAttribute('data-dialog-line',line.zh||'');
       div.innerHTML='<div class="who">'+esc(line.who||'')+'</div><div>'+esc(line.zh||'')+'</div>'+
-        (showPinyin && line.py?'<div class="pinyin">'+esc(line.py)+'</div>':'')+
-        '<div class="btn-row" style="margin-top:6px">'+
-        '<button class="btn ghost sm" type="button" data-a="listen">🔊 聽</button>'+
-        '<button class="btn ghost sm" type="button" data-a="practice">🎤 AI 練習</button></div>';
-      bindTap(div.querySelector('[data-a=listen]'),function(){speak(line.zh);fillTtsPlayer(line.zh);});
+        (line.py?'<div class="pinyin"'+(!showPinyin?' hidden':'')+'>'+esc(line.py)+'</div>':'')+
+        '<div class="btn-row" style="margin-top:6px"><button class="btn ghost sm" type="button" data-a="listen">🔊 聽</button><button class="btn ghost sm" type="button" data-a="practice">🎤 AI 練習</button></div>';
+      bindTap(div.querySelector('[data-a=listen]'),function(){speak(line.zh);});
       bindTap(div.querySelector('[data-a=practice]'),function(){
-        var ps=practiceList(sc);var hit=ps.indexOf(line.zh);pracIdx=hit>=0?hit:0;
-        if(hit<0){/* allow practicing any line */}
-        var target=hit>=0?ps[pracIdx]:line.zh;
-        fillTtsPlayer(target);
-        mountSpeakPractice(document.getElementById('dlg-speak'),target,{
-          label:'第 '+(sc.id||'')+' 關 · AI 練習',
-          onNext:function(){pracIdx=(pracIdx+1)%Math.max(1,ps.length);mountPractice();}
-        });
-        try{document.getElementById('dlg-speak').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
-      });
-      list.appendChild(div);
+        egStopSpeech();selected=line.zh;useContext=true;mountPractice();
+        var dock=body.querySelector('#dlg-speak'),bounds=dock.getBoundingClientRect();
+        if(bounds.bottom<0||bounds.top>innerHeight)dock.scrollIntoView({behavior:'auto',block:'start'});
+      });list.appendChild(div);
     });
-    /* scenario picker chips */
-    var picker=document.createElement('div');picker.className='chips';picker.style.marginTop='10px';
+    picker=document.createElement('div');picker.className='chips';picker.style.marginTop='10px';
     curList().forEach(function(s,i){
-      var b=document.createElement('button');b.type='button';b.className='chip'+(i===scIdx?' on':'');
-      b.textContent=(s.id|| (i+1))+'. '+(s.title||s.who||'');
-      bindTap(b,function(){scIdx=i;pracIdx=0;draw();});
-      picker.appendChild(b);
-    });
-    list.appendChild(picker);
-    mountPractice();
+      var button=document.createElement('button');button.type='button';button.className='chip'+(i===scIdx?' on':'');button.textContent=(s.id||i+1)+'. '+(s.title||s.who||'');button.setAttribute('data-scenario-id',String(s.id||i+1));
+      bindTap(button,function(){scIdx=i;pracIdx=0;selected='';useContext=true;draw();});picker.appendChild(button);
+    });list.appendChild(picker);mountPractice();
   }
-  bindTap(document.getElementById('dlg-next'),function(){
-    scIdx=(scIdx+1)%Math.max(1,curList().length);pracIdx=0;
-    var ps=practiceList(curSc());speak(ps[0]||'');draw();
+  cats.forEach(function(c,i){
+    var button=document.createElement('button');button.type='button';button.className='chip'+(i===0?' on':'');button.textContent=c+' · '+egScenariosByCat(c).length;button.setAttribute('data-category',c);
+    bindTap(button,function(){tabs.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});button.classList.add('on');cat=c;scIdx=0;pracIdx=0;selected='';useContext=true;draw();});tabs.appendChild(button);
   });
-  draw();
+  body.querySelector('#dlg-py').onchange=function(){showPinyin=!!this.checked;body.querySelectorAll('#dlg-list .pinyin').forEach(function(el){el.hidden=!showPinyin;});};
+  bindTap(body.querySelector('#dlg-next'),nextScene);draw();
 }
+
 
 function renderRead(body){
   var idx=0;
