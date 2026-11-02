@@ -1,5 +1,5 @@
 /* English Garden: network-first page updates, persistent speech/model caches. */
-var EG_SW_VERSION='news-papers-20261102b-voice-fix2';
+var EG_SW_VERSION='news-papers-20261102b-learning-100x20-v1';
 var SHELL_CACHE='eg-shell-'+EG_SW_VERSION,AUDIO_CACHE='eg-audio-v1',AI_CACHE='eg-ai-v2';
 var SHELL_URLS=['./english-garden.html','./manifest-english-garden.webmanifest','./eg-icon-192.png','./eg-icon-512.png','./mandarin-garden.html','./manifest-mandarin-garden.webmanifest','../cloud-save.js'];
 function absolute(path){return new URL(path,self.location.href).href;}
